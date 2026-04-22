@@ -150,13 +150,26 @@ Reload with `Cmd+Shift+,` (macOS) or restart Ghostty.
 
 ### tmux
 
+**Recommended — via [tpm](https://github.com/tmux-plugins/tpm):**
+
+```tmux
+# ~/.tmux.conf
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'Amdhj22/rbr'
+run '~/.tmux/plugins/tpm/tpm'
+```
+
+Then reload tmux and press `prefix + I` to install.
+
+**Manual — without tpm:**
+
 ```bash
-# 1. Copy the theme
+# 1. Copy the theme file
 mkdir -p ~/.config/tmux
 curl -fsSL https://raw.githubusercontent.com/Amdhj22/rbr/main/multiplexers/tmux/rbr.tmux \
   -o ~/.config/tmux/rbr.tmux
 
-# 2. Source it from your ~/.tmux.conf
+# 2. Source it from ~/.tmux.conf
 echo 'source-file ~/.config/tmux/rbr.tmux' >> ~/.tmux.conf
 
 # 3. Reload
