@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+
+# Python (scripts/)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.Python
+*.egg-info/
+
+# Editors / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.netrwhist
+
+# Logs / tmp
+*.log
+*.tmp
+.cache/

@@ -1,0 +1,56 @@
+# =============================================================================
+# RBR — Red Bull Racing theme for Ghostty
+# Version: 2.1.0-classic
+# =============================================================================
+#
+# Inspired by the Red Bull Racing Formula 1 livery:
+#   - Background : deep navy (#0a1128)   — night-race twilight
+#   - Primary    : kerb red (#e84a55)    — selected / active things
+#   - Secondary  : RB yellow (#ffd84d)   — attention / cursor / warnings
+#
+# Design philosophy:
+#   Red and yellow are the only "loud" colors. Everything else (green, blue,
+#   cyan, magenta) stays pastel so the brand pair always wins the eye.
+#
+# Install:
+#   1. Copy this file to   ~/.config/ghostty/themes/rbr
+#      (NOTE: no file extension — Ghostty uses the filename as the theme name)
+#   2. Add to ~/.config/ghostty/config :
+#        theme = rbr
+#   3. Reload with Cmd+Shift+, (macOS) or restart Ghostty.
+#
+# =============================================================================
+
+# --- ANSI palette (0-15) -----------------------------------------------------
+# 0-7: normal,  8-15: bright
+palette = 0=#05091a
+palette = 1=#e84a55
+palette = 2=#9cc080
+palette = 3=#f5c842
+palette = 4=#82a0d8
+palette = 5=#d49880
+palette = 6=#95c0c8
+palette = 7=#c8d0e8
+palette = 8=#3a4466
+palette = 9=#f56570
+palette = 10=#b8d49e
+palette = 11=#ffd84d
+palette = 12=#a4bde8
+palette = 13=#e8b498
+palette = 14=#b0d4dc
+palette = 15=#e8ecf5
+
+# --- Window / surface --------------------------------------------------------
+background = #0a1128
+foreground = #c8d0e8
+
+# --- Cursor ------------------------------------------------------------------
+# RB yellow cursor on navy gives the strongest "where am I" signal
+# without competing with the red selection highlight.
+cursor-color = #ffd84d
+cursor-text  = #0a1128
+
+# --- Selection ---------------------------------------------------------------
+# Muted navy-blue selection so selected text stays readable.
+selection-background = #1f2a52
+selection-foreground = #c8d0e8
