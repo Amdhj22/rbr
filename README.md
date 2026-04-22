@@ -122,6 +122,15 @@ Everything below reads from [`palette.json`](./palette.json) as the single sourc
 | Neovim | ✅ | [Amdhj22/rbr.nvim](https://github.com/Amdhj22/rbr.nvim) |
 | VS Code | 🚧 | planned |
 
+### Tools
+
+| Port | Status | Path |
+| ---- | :----: | ---- |
+| [eza](./tools/eza/) | ✅ | [`tools/eza/theme.yml`](./tools/eza/theme.yml) |
+| bat | 🚧 | planned |
+| delta | 🚧 | planned |
+| fzf | 🚧 | planned |
+
 &nbsp;
 
 ## 🔧 Installation
@@ -176,6 +185,26 @@ This is an **override-only** file — it respects your existing `.p10k.zsh` layo
 ### Neovim
 
 See the dedicated repo: [**Amdhj22/rbr.nvim**](https://github.com/Amdhj22/rbr.nvim). It bundles editor / syntax / treesitter / LSP / gitsigns / lualine coverage.
+
+### eza
+
+```bash
+# 1. Copy the theme into eza's config directory
+mkdir -p ~/.config/eza
+curl -fsSL https://raw.githubusercontent.com/Amdhj22/rbr/main/tools/eza/theme.yml \
+  -o ~/.config/eza/theme.yml
+
+# 2. Ensure eza finds it (workaround for eza <= 0.23.x XDG quirk)
+echo 'export EZA_CONFIG_DIR="$HOME/.config/eza"' >> ~/.zshrc
+exec zsh
+
+# 3. Verify
+eza --color=always -l
+```
+
+> **Heads-up**: on eza 0.15+ the YAML theme is supported, but versions ≤ 0.23.x fall through to the built-in default when relying on the `$XDG_CONFIG_HOME/eza/theme.yml` auto-discovery path. Setting `EZA_CONFIG_DIR` explicitly (as above) is the reliable way.
+
+Requires eza 0.15+ and a truecolor terminal.
 
 &nbsp;
 

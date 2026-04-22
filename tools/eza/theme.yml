@@ -1,0 +1,147 @@
+# =============================================================================
+# RBR — Red Bull Racing theme for eza
+# Version: 2.1.0-classic
+# =============================================================================
+#
+# eza is a modern `ls` replacement.  This file is a YAML theme descriptor that
+# paints filenames, permissions, sizes, dates, git status, and more in the RBR
+# palette.
+#
+# Design philosophy:
+#   - Kerb Red (#e84a55)   : PRIMARY    — active/privileged items, read permission,
+#                                         current branch, conflicts, "huge" sizes.
+#   - RB Yellow (#ffd84d)  : SECONDARY  — "attention now": write permission,
+#                                         modified files, dates.
+#   - All other accents stay pastel so the brand pair always wins the eye.
+#
+# Install:
+#   1. Copy this file to   ~/.config/eza/theme.yml
+#      (directory == $EZA_CONFIG_DIR or $XDG_CONFIG_HOME/eza)
+#   2. Ensure `eza --color=always` renders in a truecolor terminal.
+#   3. No shell reload required.
+#
+# Known quirk (eza <= 0.23.x):
+#   When EZA_CONFIG_DIR is not set, eza's XDG-default branch returns the built-in
+#   default theme even if ~/.config/eza/theme.yml exists. Workaround:
+#       export EZA_CONFIG_DIR="$HOME/.config/eza"
+#   If you use XDG_CONFIG_HOME, adjust accordingly.
+#
+# Requires: eza 0.15+ (YAML theme support) and a truecolor terminal.
+# =============================================================================
+
+colourful: true
+
+# ---- File kinds ------------------------------------------------------------
+filekinds:
+  normal:       {foreground: "#c8d0e8"}   # text
+  directory:    {foreground: "#a4bde8"}   # sky_blue (palette canonical role)
+  symlink:      {foreground: "#82a0d8"}   # oracle_blue
+  pipe:         {foreground: "#8590ae"}   # subtext1
+  block_device: {foreground: "#f56570"}   # kerb_bright
+  char_device:  {foreground: "#f56570"}   # kerb_bright
+  socket:       {foreground: "#8590ae"}   # subtext1
+  special:      {foreground: "#e8b498"}   # crowd_orange
+  executable:   {foreground: "#b8d49e"}   # paddock_green
+  mount_point:  {foreground: "#95c0c8"}   # teal
+
+# ---- Permission bits -------------------------------------------------------
+# user_* bits bold so your own rights pop; group/other stay plain.
+perms:
+  user_read:          {foreground: "#e84a55", is_bold: true}   # kerb_red   — primary
+  user_write:         {foreground: "#ffd84d", is_bold: true}   # rb_yellow  — secondary
+  user_execute_file:  {foreground: "#b8d49e", is_bold: true}   # paddock_green
+  user_execute_other: {foreground: "#b8d49e", is_bold: true}
+  group_read:         {foreground: "#e84a55"}
+  group_write:        {foreground: "#f5c842"}                  # rb_warm    — ANSI yellow
+  group_execute:      {foreground: "#9cc080"}                  # track_green
+  other_read:         {foreground: "#e84a55"}
+  other_write:        {foreground: "#f5c842"}
+  other_execute:      {foreground: "#9cc080"}
+  special_user_file:  {foreground: "#e8b498"}                  # crowd_orange
+  special_other:      {foreground: "#565f80"}                  # overlay2
+  attribute:          {foreground: "#4a5580"}                  # overlay1
+
+# ---- File sizes ------------------------------------------------------------
+# Small sizes neutral, large sizes louder — "huge" uses Kerb Red intentionally
+# (per the Red-means-attention rule).
+size:
+  major:        {foreground: "#8590ae"}   # subtext1
+  minor:        {foreground: "#95c0c8"}   # teal
+  number_byte:  {foreground: "#8590ae"}
+  number_kilo:  {foreground: "#8590ae"}
+  number_mega:  {foreground: "#82a0d8"}   # oracle_blue
+  number_giga:  {foreground: "#e8b498"}   # crowd_orange
+  number_huge:  {foreground: "#e84a55"}   # kerb_red — "this file is massive"
+  unit_byte:    {foreground: "#8590ae"}
+  unit_kilo:    {foreground: "#95c0c8"}
+  unit_mega:    {foreground: "#82a0d8"}
+  unit_giga:    {foreground: "#e8b498"}
+  unit_huge:    {foreground: "#e84a55"}
+
+# ---- Users & groups --------------------------------------------------------
+users:
+  user_you:    {foreground: "#c8d0e8"}   # text
+  user_root:   {foreground: "#e84a55"}   # kerb_red — privileged
+  user_other:  {foreground: "#f56570"}   # kerb_bright
+  group_yours: {foreground: "#8590ae"}   # subtext1
+  group_other: {foreground: "#565f80"}   # overlay2
+  group_root:  {foreground: "#e84a55"}
+
+# ---- Symlinks --------------------------------------------------------------
+links:
+  normal:          {foreground: "#82a0d8"}  # oracle_blue
+  multi_link_file: {foreground: "#82a0d8"}
+
+# ---- Git status (per-file) -------------------------------------------------
+# Additions green, modifications yellow, deletions bright red, renames blue —
+# mirrors the palette.json canonical usage notes.
+git:
+  new:        {foreground: "#b8d49e"}                  # paddock_green — added
+  modified:   {foreground: "#ffd84d"}                  # rb_yellow     — modified
+  deleted:    {foreground: "#f56570"}                  # kerb_bright   — delete
+  renamed:    {foreground: "#a4bde8"}                  # sky_blue      — renamed
+  typechange: {foreground: "#d49880"}                  # warm_pink
+  ignored:    {foreground: "#6a7495"}                  # subtext0
+  conflicted: {foreground: "#e84a55", is_bold: true}   # kerb_red      — alert
+
+# ---- Git repo (--git-repos flag) -------------------------------------------
+git_repo:
+  branch_main:  {foreground: "#8590ae"}   # subtext1 — default branch stays neutral
+  branch_other: {foreground: "#e84a55"}   # kerb_red — "current branch" is primary
+  git_clean:    {foreground: "#b8d49e"}   # paddock_green
+  git_dirty:    {foreground: "#f56570"}   # kerb_bright
+
+# ---- Security context (SELinux / xattr) ------------------------------------
+security_context:
+  colon: {foreground: "#3a4466"}   # overlay0
+  user:  {foreground: "#8590ae"}   # subtext1
+  role:  {foreground: "#e8b498"}   # crowd_orange
+  typ:   {foreground: "#565f80"}   # overlay2
+  range: {foreground: "#e8b498"}
+
+# ---- File-type category coloring -------------------------------------------
+file_type:
+  image:      {foreground: "#ffd84d"}   # rb_yellow
+  video:      {foreground: "#e84a55"}   # kerb_red
+  music:      {foreground: "#b8d49e"}   # paddock_green
+  lossless:   {foreground: "#95c0c8"}   # teal
+  crypto:     {foreground: "#6a7495"}   # subtext0
+  document:   {foreground: "#c8d0e8"}   # text
+  compressed: {foreground: "#d49880"}   # warm_pink
+  temp:       {foreground: "#f56570"}   # kerb_bright
+  compiled:   {foreground: "#82a0d8"}   # oracle_blue
+  source:     {foreground: "#a4bde8"}   # sky_blue
+
+# ---- Top-level single styles -----------------------------------------------
+punctuation: {foreground: "#3a4466"}    # overlay0
+date:        {foreground: "#b8d49e"}    # paddock_green — informational (not "attention")
+inode:       {foreground: "#8590ae"}
+blocks:      {foreground: "#3a4466"}
+header:      {foreground: "#c8d0e8"}
+octal:       {foreground: "#95c0c8"}
+flags:       {foreground: "#e8b498"}
+
+symlink_path:        {foreground: "#82a0d8"}
+control_char:        {foreground: "#f56570"}
+broken_symlink:      {foreground: "#e84a55", is_bold: true}
+broken_path_overlay: {foreground: "#565f80"}
