@@ -8,16 +8,17 @@ This document is the source of truth for color semantics. If you are building a 
 
 ## Philosophy
 
-RBR is a **two-accent scheme**: **Kerb Red** (`#e84a55`) and **RB Yellow** (`#ffd84d`). Every other color is deliberately pastel so the brand pair dominates the viewport.
+RBR is a **three-accent scheme**: **Kerb Red** (`#e84a55`), **RB Yellow** (`#ffd84d`), and **Pure White** (`#ffffff`). Every other color is deliberately pastel so the trio dominates the viewport — the same three colors that own the Red Bull Racing livery.
 
-Three principles govern every color choice:
+Five principles govern every color choice:
 
 1. **Red means "this one."** Kerb Red marks the *single* active/selected thing on screen — the current branch, the active tab, the focused pane. If two things are red, neither reads as primary.
 2. **Yellow means "look here now."** RB Yellow marks urgency — the cursor, an unread notification, a modified file, a warning. It is motion in a still image.
-3. **Everything else steps back.** Greens, blues, and cyans stay in a narrow pastel band (HSL lightness 60–78). They exist to classify content, not to compete with the brand pair.
-4. **Magenta is intentionally neutral grey.** Numbers and constants get visual weight without color noise — the magenta slot is reserved for that, not for another saturated accent.
+3. **White means "this is callable."** Pure White is the function/method accent — the third dominant color in any code buffer. Function names jump out so the eye can scan call sites at a glance.
+4. **Everything else steps back.** Greens, blues, and cyans stay in a narrow pastel band (HSL lightness 60–78). They exist to classify content, not to compete with the trio.
+5. **Magenta is intentionally neutral grey.** Numbers and constants get visual weight without color noise — the magenta slot is reserved for that, not for another saturated accent.
 
-If you ever feel like adding a third "shouty" color, you are drifting away from RBR. Use a layer (`surface*`, `overlay*`) instead.
+If you ever feel like adding a fourth "shouty" color, you are drifting away from RBR. Use a layer (`surface*`, `overlay*`) instead.
 
 ---
 
@@ -104,7 +105,7 @@ Low-saturation colors arranged on a **lightness ladder** from deepest background
 | Keywords         | `kerb_red`     | Control flow is the "verb" — the most important syntax element. |
 | Strings          | `paddock_green`| Data content reads calmly.                                 |
 | Numbers          | `light_grey`   | Visible but no color noise — the v2.2 magenta-neutral idea. |
-| Functions        | `oracle_blue`  | Named operations.                                          |
+| Functions        | `pure_white`   | Third brand accent — call sites jump out at a glance.      |
 | Types / Classes  | `rb_yellow`    | Structure declarations earn attention.                     |
 | Constants        | `cool_grey`    | Immutable values get weight without competing with accents. |
 | Variables        | `text`         | The default — no color is also a choice.                   |

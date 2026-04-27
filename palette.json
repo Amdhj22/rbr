@@ -5,15 +5,16 @@
     "slug": "rbr",
     "description": "Red Bull Racing — the Classic kerb red × brand yellow signature, on toned-down navy.",
     "author": "주인",
-    "version": "2.2.0-classic",
-    "base": "Red Bull Racing livery palette. Navy #0a1128 + kerb red #e84a55 + RB yellow #ffd84d.",
-    "philosophy": "Primary accent = kerb red (active/selected/current). Secondary accent = RB yellow (alerts/notifications/current line). Magenta slot is a quiet neutral grey because warm-pink magenta clashed with navy. Other colors intentionally subdued so the red/yellow pair dominates.",
+    "version": "2.3.0-classic",
+    "base": "Red Bull Racing livery palette. Navy #0a1128 + kerb red #e84a55 + RB yellow #ffd84d + pure white #ffffff.",
+    "philosophy": "Three brand accents: kerb red (active/selected/current), RB yellow (alerts/notifications/cursor), pure white (functions/methods). Code scans visually as a red/yellow/white trio — the same three colors that own the Red Bull Racing livery. Other colors stay deliberately pastel so the trio dominates. Magenta slot is neutral grey so numbers/constants get visual weight without color noise.",
     "design_rules": [
       "Red is reserved for 'this is the selected/active thing' — exactly one per viewport.",
       "Yellow is reserved for 'attention needed now' — notifications, warnings, cursor position.",
-      "Green/blue/cyan stay pastel to preserve visual hierarchy — they should never compete with red/yellow.",
+      "Pure white is the function accent — function and method names read as the third dominant color in any code buffer.",
+      "Green/blue/cyan stay pastel to preserve visual hierarchy — they should never compete with the trio.",
       "Magenta slot is intentionally neutral grey: numbers and constants get visual weight without color noise.",
-      "Background navy is low-saturation so the brand pair pops without harshness."
+      "Background navy is low-saturation so the trio pops without harshness."
     ]
   },
 
@@ -35,7 +36,7 @@
   },
 
   "brand": {
-    "_comment": "The two Red Bull signature colors. Referenced by name throughout.",
+    "_comment": "Three Red Bull Racing signature colors form the trio that dominates the buffer. Other accents stay pastel.",
     "kerb_red":        "#e84a55",
     "kerb_red_bright": "#f56570",
     "kerb_red_pure":   "#cc1e4a",
@@ -43,6 +44,8 @@
     "rb_yellow":        "#ffd84d",
     "rb_yellow_warm":   "#f5c842",
     "rb_yellow_pure":   "#ffc906",
+
+    "pure_white":      "#ffffff",
 
     "oracle_blue":    "#82a0d8",
     "oracle_blue_bright": "#a4bde8"
@@ -92,6 +95,8 @@
     "current_line": "#ffd84d",
     "notification": "#ffd84d",
     "branch":       "#e84a55",
+    "function":     "#ffffff",
+    "method":       "#ffffff",
     "k8s_context":  "#82a0d8",
     "k8s_prod":     "#f56570",
     "namespace":    "#95c0c8",

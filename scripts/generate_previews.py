@@ -79,25 +79,39 @@ def palette_hero() -> Path:
     chip(d, (24, 24, W - 24, 110), hx(ui["bg_float"]), radius=10)
     d.text((44, 32), "RBR", fill=hx(brand["kerb_red"]), font=font(40))
     d.text((44, 78),
-           f"v{meta['version']}  ·  Red Bull Racing kerb red × brand yellow",
+           f"v{meta['version']}  ·  Red Bull Racing kerb red × RB yellow × pure white",
            fill=hx(ui["fg_dim"]), font=font(13))
-    chip(d, (W - 92, 38, W - 44, 56), hx(brand["kerb_red"]), radius=4)
-    chip(d, (W - 92, 64, W - 44, 82), hx(brand["rb_yellow"]), radius=4)
+    chip(d, (W - 92, 32, W - 44, 50), hx(brand["kerb_red"]), radius=4)
+    chip(d, (W - 92, 56, W - 44, 74), hx(brand["rb_yellow"]), radius=4)
+    chip(d, (W - 92, 80, W - 44, 98), hx(brand["pure_white"]), radius=4,
+         outline=hx(ui["fg_subtle"]), width=1)
 
-    # ---- Signature pair --------------------------------------------------
-    d.text((28, 130), "SIGNATURE PAIR", fill=hx(ui["fg_subtle"]), font=font(11))
+    # ---- Signature trio --------------------------------------------------
+    d.text((28, 130), "SIGNATURE TRIO", fill=hx(ui["fg_subtle"]), font=font(11))
 
-    chip(d, (24, 150, 530, 246), hx(brand["kerb_red"]), radius=8)
-    d.text((44, 162), "KERB RED", fill=hx(ui["bg"]), font=font(20))
-    d.text((44, 192), brand["kerb_red"], fill=hx(ui["bg"]), font=font(13))
-    d.text((44, 218), "primary  ·  active  ·  selected  ·  branch",
-           fill=hx(ui["bg"]), font=font(11))
+    cw3 = (W - 48 - 2 * 8) // 3
+    sy0, sh = 150, 96
 
-    chip(d, (550, 150, W - 24, 246), hx(brand["rb_yellow"]), radius=8)
-    d.text((570, 162), "RB YELLOW", fill=hx(ui["bg"]), font=font(20))
-    d.text((570, 192), brand["rb_yellow"], fill=hx(ui["bg"]), font=font(13))
-    d.text((570, 218), "attention  ·  notification  ·  cursor  ·  current line",
-           fill=hx(ui["bg"]), font=font(11))
+    chip(d, (24, sy0, 24 + cw3, sy0 + sh), hx(brand["kerb_red"]), radius=8)
+    d.text((44, sy0 + 12), "KERB RED", fill=hx(ui["bg"]), font=font(18))
+    d.text((44, sy0 + 42), brand["kerb_red"], fill=hx(ui["bg"]), font=font(12))
+    d.text((44, sy0 + 70), "active  ·  selected  ·  branch",
+           fill=hx(ui["bg"]), font=font(10))
+
+    x_y = 24 + cw3 + 8
+    chip(d, (x_y, sy0, x_y + cw3, sy0 + sh), hx(brand["rb_yellow"]), radius=8)
+    d.text((x_y + 20, sy0 + 12), "RB YELLOW", fill=hx(ui["bg"]), font=font(18))
+    d.text((x_y + 20, sy0 + 42), brand["rb_yellow"], fill=hx(ui["bg"]), font=font(12))
+    d.text((x_y + 20, sy0 + 70), "cursor  ·  warning  ·  attention",
+           fill=hx(ui["bg"]), font=font(10))
+
+    x_w = 24 + 2 * (cw3 + 8)
+    chip(d, (x_w, sy0, x_w + cw3, sy0 + sh), hx(brand["pure_white"]), radius=8,
+         outline=hx(ui["fg_subtle"]), width=1)
+    d.text((x_w + 20, sy0 + 12), "PURE WHITE", fill=hx(ui["bg"]), font=font(18))
+    d.text((x_w + 20, sy0 + 42), brand["pure_white"], fill=hx(ui["bg"]), font=font(12))
+    d.text((x_w + 20, sy0 + 70), "function  ·  method",
+           fill=hx(ui["bg"]), font=font(10))
 
     # ---- Background tones (6) -------------------------------------------
     d.text((28, 268), "BACKGROUND TONES", fill=hx(ui["fg_subtle"]), font=font(11))

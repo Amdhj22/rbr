@@ -17,7 +17,7 @@
 
 ## About
 
-RBR is a **two-accent color scheme** built around the Red Bull Racing livery: **kerb red** for what's active, **RB yellow** for what needs your attention, and a deep navy base that keeps both readable. Every other color stays deliberately pastel so the brand pair always wins your eye.
+RBR is a **three-accent color scheme** built around the Red Bull Racing livery: **kerb red** for what's active, **RB yellow** for what needs your attention, and **pure white** for callable code (functions / methods). A deep navy base keeps the trio readable. Every other color stays deliberately pastel so the brand trio always wins your eye.
 
 If you like schemes where the cursor, active tab, and current branch genuinely stand out — instead of drowning in a rainbow — RBR is for you.
 
@@ -52,6 +52,7 @@ Ordered by visual priority. **Kerb Red** and **RB Yellow** are the only "loud" c
 | ![](https://img.shields.io/badge/-RB_Yellow-ffd84d?style=flat-square&color=ffd84d) | RB Yellow | `#ffd84d` | **secondary** — cursor / warning |
 | ![](https://img.shields.io/badge/-RB_Warm-f5c842?style=flat-square&color=f5c842) | RB Warm | `#f5c842` | ANSI yellow, sustained warning |
 | ![](https://img.shields.io/badge/-RB_Pure-ffc906?style=flat-square&color=ffc906) | RB Pure | `#ffc906` | brand-pure, logos |
+| ![](https://img.shields.io/badge/-Pure_White-ffffff?style=flat-square&color=ffffff) | Pure White | `#ffffff` | **tertiary** — functions / methods |
 | ![](https://img.shields.io/badge/-Oracle_Blue-82a0d8?style=flat-square&color=82a0d8) | Oracle Blue | `#82a0d8` | info, links |
 | ![](https://img.shields.io/badge/-Sky_Blue-a4bde8?style=flat-square&color=a4bde8) | Sky Blue | `#a4bde8` | directories, renamed |
 | ![](https://img.shields.io/badge/-Track_Green-9cc080?style=flat-square&color=9cc080) | Track Green | `#9cc080` | ANSI green, hostname |
@@ -238,7 +239,7 @@ Contributions are welcome, especially new ports. Before opening a PR:
 2. Keep [`palette.json`](./palette.json) as the only source of color truth. Don't hardcode hex values anywhere else without referencing it.
 3. Open an issue first for anything bigger than a one-file port.
 
-Opening an issue is also the right move if you spot a contrast problem, a broken port, or a color that fights the two-accent rule.
+Opening an issue is also the right move if you spot a contrast problem, a broken port, or a color that fights the three-accent rule.
 
 &nbsp;
 
