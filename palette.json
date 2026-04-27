@@ -6,8 +6,8 @@
     "description": "Red Bull Racing — the Classic kerb red × brand yellow signature, on toned-down navy.",
     "author": "주인",
     "version": "2.3.0-classic",
-    "base": "Red Bull Racing livery palette. Navy #0a1128 + kerb red #e84a55 + RB yellow #ffd84d + pure white #ffffff.",
-    "philosophy": "Three brand accents: kerb red (active/selected/current), RB yellow (alerts/notifications/cursor), pure white (functions/methods). Code scans visually as a red/yellow/white trio — the same three colors that own the Red Bull Racing livery. Other colors stay deliberately pastel so the trio dominates. Magenta slot is neutral grey so numbers/constants get visual weight without color noise.",
+    "base": "Red Bull Racing livery palette. Navy #0a1128 + kerb red #e84a55 + RB yellow #ffd84d + chequer white #ffffff.",
+    "philosophy": "Three brand accents: kerb red (active/selected/current), RB yellow (alerts/notifications/cursor), chequer white (functions/methods). Code scans visually as a red/yellow/white trio — the same three colors that own the Red Bull Racing livery. Other colors stay deliberately pastel so the trio dominates. Magenta slot is neutral grey so numbers/constants get visual weight without color noise.",
     "design_rules": [
       "Red is reserved for 'this is the selected/active thing' — exactly one per viewport.",
       "Yellow is reserved for 'attention needed now' — notifications, warnings, cursor position.",
@@ -45,7 +45,7 @@
     "rb_yellow_warm":   "#f5c842",
     "rb_yellow_pure":   "#ffc906",
 
-    "pure_white":      "#ffffff",
+    "chequer_white":      "#ffffff",
 
     "oracle_blue":    "#82a0d8",
     "oracle_blue_bright": "#a4bde8"
@@ -59,7 +59,7 @@
     "yellow":         "#f5c842",
     "blue":           "#82a0d8",
     "magenta":        "#a8a8b0",
-    "cyan":           "#95c0c8",
+    "cyan":           "#2563eb",
     "white":          "#c8d0e8",
     "bright_black":   "#3a4466",
     "bright_red":     "#f56570",
@@ -99,7 +99,7 @@
     "method":       "#ffffff",
     "k8s_context":  "#82a0d8",
     "k8s_prod":     "#f56570",
-    "namespace":    "#95c0c8",
+    "namespace":    "#2563eb",
     "directory":    "#a4bde8",
     "host":         "#9cc080",
     "user":         "#ffd84d"

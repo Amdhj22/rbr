@@ -17,7 +17,7 @@
 
 ## About
 
-RBR is a **three-accent color scheme** built around the Red Bull Racing livery: **kerb red** for what's active, **RB yellow** for what needs your attention, and **pure white** for callable code (functions / methods). A deep navy base keeps the trio readable. Every other color stays deliberately pastel so the brand trio always wins your eye.
+RBR is a **three-accent color scheme** built around the Red Bull Racing livery: **kerb red** for what's active, **RB yellow** for what needs your attention, and **chequer white** for callable code (functions / methods). A deep navy base keeps the trio readable. Every other color stays deliberately pastel so the brand trio always wins your eye.
 
 If you like schemes where the cursor, active tab, and current branch genuinely stand out — instead of drowning in a rainbow — RBR is for you.
 
@@ -52,14 +52,14 @@ Ordered by visual priority. **Kerb Red** and **RB Yellow** are the only "loud" c
 | ![](https://img.shields.io/badge/-RB_Yellow-ffd84d?style=flat-square&color=ffd84d) | RB Yellow | `#ffd84d` | **secondary** — cursor / warning |
 | ![](https://img.shields.io/badge/-RB_Warm-f5c842?style=flat-square&color=f5c842) | RB Warm | `#f5c842` | ANSI yellow, sustained warning |
 | ![](https://img.shields.io/badge/-RB_Pure-ffc906?style=flat-square&color=ffc906) | RB Pure | `#ffc906` | brand-pure, logos |
-| ![](https://img.shields.io/badge/-Pure_White-ffffff?style=flat-square&color=ffffff) | Pure White | `#ffffff` | **tertiary** — functions / methods |
+| ![](https://img.shields.io/badge/-Pure_White-ffffff?style=flat-square&color=ffffff) | Chequer White | `#ffffff` | **tertiary** — functions / methods |
 | ![](https://img.shields.io/badge/-Oracle_Blue-82a0d8?style=flat-square&color=82a0d8) | Oracle Blue | `#82a0d8` | info, links |
 | ![](https://img.shields.io/badge/-Sky_Blue-a4bde8?style=flat-square&color=a4bde8) | Sky Blue | `#a4bde8` | directories, renamed |
 | ![](https://img.shields.io/badge/-Track_Green-9cc080?style=flat-square&color=9cc080) | Track Green | `#9cc080` | ANSI green, hostname |
 | ![](https://img.shields.io/badge/-Paddock_Green-b8d49e?style=flat-square&color=b8d49e) | Paddock Green | `#b8d49e` | success, added |
 | ![](https://img.shields.io/badge/-Cool_Grey-a8a8b0?style=flat-square&color=a8a8b0) | Cool Grey | `#a8a8b0` | ANSI magenta — intentionally neutral |
 | ![](https://img.shields.io/badge/-Light_Grey-c8c8d0?style=flat-square&color=c8c8d0) | Light Grey | `#c8c8d0` | ANSI bright_magenta — numbers / constants without color noise |
-| ![](https://img.shields.io/badge/-Teal-95c0c8?style=flat-square&color=95c0c8) | Teal | `#95c0c8` | ANSI cyan, hint |
+| ![](https://img.shields.io/badge/-Teal-2563eb?style=flat-square&color=2563eb) | Teal | `#2563eb` | ANSI cyan, hint |
 | ![](https://img.shields.io/badge/-Pit_Light-b0d4dc?style=flat-square&color=b0d4dc) | Pit Light | `#b0d4dc` | subtle guidance |
 
 ### Neutral layers — the lightness ladder

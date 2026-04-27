@@ -42,7 +42,7 @@ filekinds:
   socket:       {foreground: "#8590ae"}   # subtext1
   special:      {foreground: "#c8c8d0"}   # light_grey
   executable:   {foreground: "#b8d49e"}   # paddock_green
-  mount_point:  {foreground: "#95c0c8"}   # teal
+  mount_point:  {foreground: "#2563eb"}   # teal
 
 # ---- Permission bits -------------------------------------------------------
 # user_* bits bold so your own rights pop; group/other stay plain.
@@ -66,14 +66,14 @@ perms:
 # (per the Red-means-attention rule).
 size:
   major:        {foreground: "#8590ae"}   # subtext1
-  minor:        {foreground: "#95c0c8"}   # teal
+  minor:        {foreground: "#2563eb"}   # teal
   number_byte:  {foreground: "#8590ae"}
   number_kilo:  {foreground: "#8590ae"}
   number_mega:  {foreground: "#82a0d8"}   # oracle_blue
   number_giga:  {foreground: "#c8c8d0"}   # light_grey
   number_huge:  {foreground: "#e84a55"}   # kerb_red — "this file is massive"
   unit_byte:    {foreground: "#8590ae"}
-  unit_kilo:    {foreground: "#95c0c8"}
+  unit_kilo:    {foreground: "#2563eb"}
   unit_mega:    {foreground: "#82a0d8"}
   unit_giga:    {foreground: "#c8c8d0"}
   unit_huge:    {foreground: "#e84a55"}
@@ -124,7 +124,7 @@ file_type:
   image:      {foreground: "#ffd84d"}   # rb_yellow
   video:      {foreground: "#e84a55"}   # kerb_red
   music:      {foreground: "#b8d49e"}   # paddock_green
-  lossless:   {foreground: "#95c0c8"}   # teal
+  lossless:   {foreground: "#2563eb"}   # teal
   crypto:     {foreground: "#6a7495"}   # subtext0
   document:   {foreground: "#c8d0e8"}   # text
   compressed: {foreground: "#a8a8b0"}   # cool_grey
@@ -138,7 +138,7 @@ date:        {foreground: "#b8d49e"}    # paddock_green — informational (not "
 inode:       {foreground: "#8590ae"}
 blocks:      {foreground: "#3a4466"}
 header:      {foreground: "#c8d0e8"}
-octal:       {foreground: "#95c0c8"}
+octal:       {foreground: "#2563eb"}
 flags:       {foreground: "#c8c8d0"}
 
 symlink_path:        {foreground: "#82a0d8"}

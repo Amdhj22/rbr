@@ -79,11 +79,11 @@ def palette_hero() -> Path:
     chip(d, (24, 24, W - 24, 110), hx(ui["bg_float"]), radius=10)
     d.text((44, 32), "RBR", fill=hx(brand["kerb_red"]), font=font(40))
     d.text((44, 78),
-           f"v{meta['version']}  ·  Red Bull Racing kerb red × RB yellow × pure white",
+           f"v{meta['version']}  ·  Red Bull Racing kerb red × RB yellow × chequer white",
            fill=hx(ui["fg_dim"]), font=font(13))
     chip(d, (W - 92, 32, W - 44, 50), hx(brand["kerb_red"]), radius=4)
     chip(d, (W - 92, 56, W - 44, 74), hx(brand["rb_yellow"]), radius=4)
-    chip(d, (W - 92, 80, W - 44, 98), hx(brand["pure_white"]), radius=4,
+    chip(d, (W - 92, 80, W - 44, 98), hx(brand["chequer_white"]), radius=4,
          outline=hx(ui["fg_subtle"]), width=1)
 
     # ---- Signature trio --------------------------------------------------
@@ -106,10 +106,10 @@ def palette_hero() -> Path:
            fill=hx(ui["bg"]), font=font(10))
 
     x_w = 24 + 2 * (cw3 + 8)
-    chip(d, (x_w, sy0, x_w + cw3, sy0 + sh), hx(brand["pure_white"]), radius=8,
+    chip(d, (x_w, sy0, x_w + cw3, sy0 + sh), hx(brand["chequer_white"]), radius=8,
          outline=hx(ui["fg_subtle"]), width=1)
-    d.text((x_w + 20, sy0 + 12), "PURE WHITE", fill=hx(ui["bg"]), font=font(18))
-    d.text((x_w + 20, sy0 + 42), brand["pure_white"], fill=hx(ui["bg"]), font=font(12))
+    d.text((x_w + 20, sy0 + 12), "CHEQUER WHITE", fill=hx(ui["bg"]), font=font(18))
+    d.text((x_w + 20, sy0 + 42), brand["chequer_white"], fill=hx(ui["bg"]), font=font(12))
     d.text((x_w + 20, sy0 + 70), "function  ·  method",
            fill=hx(ui["bg"]), font=font(10))
 

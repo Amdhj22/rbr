@@ -8,13 +8,13 @@ This document is the source of truth for color semantics. If you are building a 
 
 ## Philosophy
 
-RBR is a **three-accent scheme**: **Kerb Red** (`#e84a55`), **RB Yellow** (`#ffd84d`), and **Pure White** (`#ffffff`). Every other color is deliberately pastel so the trio dominates the viewport — the same three colors that own the Red Bull Racing livery.
+RBR is a **three-accent scheme**: **Kerb Red** (`#e84a55`), **RB Yellow** (`#ffd84d`), and **Chequer White** (`#ffffff`). Every other color is deliberately pastel so the trio dominates the viewport — the same three colors that own the Red Bull Racing livery.
 
 Five principles govern every color choice:
 
 1. **Red means "this one."** Kerb Red marks the *single* active/selected thing on screen — the current branch, the active tab, the focused pane. If two things are red, neither reads as primary.
 2. **Yellow means "look here now."** RB Yellow marks urgency — the cursor, an unread notification, a modified file, a warning. It is motion in a still image.
-3. **White means "this is callable."** Pure White is the function/method accent — the third dominant color in any code buffer. Function names jump out so the eye can scan call sites at a glance.
+3. **White means "this is callable."** Chequer White is the function/method accent — the third dominant color in any code buffer. Function names jump out so the eye can scan call sites at a glance.
 4. **Everything else steps back.** Greens, blues, and cyans stay in a narrow pastel band (HSL lightness 60–78). They exist to classify content, not to compete with the trio.
 5. **Magenta is intentionally neutral grey.** Numbers and constants get visual weight without color noise — the magenta slot is reserved for that, not for another saturated accent.
 
@@ -56,7 +56,7 @@ Accents are ordered by visual priority:
 |     9 | Paddock Green   | `#b8d49e` | success          | Test passes, successful runs, added files     |
 |    10 | Cool Grey       | `#a8a8b0` | magenta-neutral  | ANSI magenta slot — intentionally desaturated |
 |    11 | Light Grey      | `#c8c8d0` | bright-neutral   | Numbers, constants — visual weight without color noise |
-|    12 | Teal            | `#95c0c8` | cyan             | ANSI cyan slot, hint text                     |
+|    12 | Teal            | `#2563eb` | cyan             | ANSI cyan slot, hint text                     |
 |    13 | Pit Light       | `#b0d4dc` | hint             | Subtle guidance, pit-lane signals             |
 
 ### 2. Neutral layers (12 total)
@@ -105,7 +105,7 @@ Low-saturation colors arranged on a **lightness ladder** from deepest background
 | Keywords         | `kerb_red`     | Control flow is the "verb" — the most important syntax element. |
 | Strings          | `paddock_green`| Data content reads calmly.                                 |
 | Numbers          | `light_grey`   | Visible but no color noise — the v2.2 magenta-neutral idea. |
-| Functions        | `pure_white`   | Third brand accent — call sites jump out at a glance.      |
+| Functions        | `chequer_white`   | Third brand accent — call sites jump out at a glance.      |
 | Types / Classes  | `rb_yellow`    | Structure declarations earn attention.                     |
 | Constants        | `cool_grey`    | Immutable values get weight without competing with accents. |
 | Variables        | `text`         | The default — no color is also a choice.                   |
@@ -155,7 +155,7 @@ Ports that only expose 16 ANSI slots should use this canonical mapping. Every te
 |    3 | yellow          | `rb_warm`       | `#f5c842` |
 |    4 | blue            | `oracle_blue`   | `#82a0d8` |
 |    5 | magenta         | `cool_grey`     | `#a8a8b0` |
-|    6 | cyan            | `teal`          | `#95c0c8` |
+|    6 | cyan            | `teal`          | `#2563eb` |
 |    7 | white           | `text`          | `#c8d0e8` |
 |    8 | bright black    | `overlay0`      | `#3a4466` |
 |    9 | bright red      | `kerb_bright`   | `#f56570` |
