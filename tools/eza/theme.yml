@@ -40,7 +40,7 @@ filekinds:
   block_device: {foreground: "#f56570"}   # kerb_bright
   char_device:  {foreground: "#f56570"}   # kerb_bright
   socket:       {foreground: "#8590ae"}   # subtext1
-  special:      {foreground: "#c8c8d0"}   # crowd_orange
+  special:      {foreground: "#c8c8d0"}   # light_grey
   executable:   {foreground: "#b8d49e"}   # paddock_green
   mount_point:  {foreground: "#95c0c8"}   # teal
 
@@ -57,7 +57,7 @@ perms:
   other_read:         {foreground: "#e84a55"}
   other_write:        {foreground: "#f5c842"}
   other_execute:      {foreground: "#9cc080"}
-  special_user_file:  {foreground: "#c8c8d0"}                  # crowd_orange
+  special_user_file:  {foreground: "#c8c8d0"}                  # light_grey
   special_other:      {foreground: "#565f80"}                  # overlay2
   attribute:          {foreground: "#4a5580"}                  # overlay1
 
@@ -70,7 +70,7 @@ size:
   number_byte:  {foreground: "#8590ae"}
   number_kilo:  {foreground: "#8590ae"}
   number_mega:  {foreground: "#82a0d8"}   # oracle_blue
-  number_giga:  {foreground: "#c8c8d0"}   # crowd_orange
+  number_giga:  {foreground: "#c8c8d0"}   # light_grey
   number_huge:  {foreground: "#e84a55"}   # kerb_red — "this file is massive"
   unit_byte:    {foreground: "#8590ae"}
   unit_kilo:    {foreground: "#95c0c8"}
@@ -100,7 +100,7 @@ git:
   modified:   {foreground: "#ffd84d"}                  # rb_yellow     — modified
   deleted:    {foreground: "#f56570"}                  # kerb_bright   — delete
   renamed:    {foreground: "#a4bde8"}                  # sky_blue      — renamed
-  typechange: {foreground: "#a8a8b0"}                  # warm_pink
+  typechange: {foreground: "#a8a8b0"}                  # cool_grey
   ignored:    {foreground: "#6a7495"}                  # subtext0
   conflicted: {foreground: "#e84a55", is_bold: true}   # kerb_red      — alert
 
@@ -115,7 +115,7 @@ git_repo:
 security_context:
   colon: {foreground: "#3a4466"}   # overlay0
   user:  {foreground: "#8590ae"}   # subtext1
-  role:  {foreground: "#c8c8d0"}   # crowd_orange
+  role:  {foreground: "#c8c8d0"}   # light_grey
   typ:   {foreground: "#565f80"}   # overlay2
   range: {foreground: "#c8c8d0"}
 
@@ -127,7 +127,7 @@ file_type:
   lossless:   {foreground: "#95c0c8"}   # teal
   crypto:     {foreground: "#6a7495"}   # subtext0
   document:   {foreground: "#c8d0e8"}   # text
-  compressed: {foreground: "#a8a8b0"}   # warm_pink
+  compressed: {foreground: "#a8a8b0"}   # cool_grey
   temp:       {foreground: "#f56570"}   # kerb_bright
   compiled:   {foreground: "#82a0d8"}   # oracle_blue
   source:     {foreground: "#a4bde8"}   # sky_blue

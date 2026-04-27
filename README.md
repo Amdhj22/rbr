@@ -29,10 +29,10 @@ If you like schemes where the cursor, active tab, and current branch genuinely s
 ## 🏎️ Previews
 
 <p align="center">
-  <img src="./assets/rbr-palette-v2.2.png" alt="RBR palette v2.2 — signature pair, background tones, foreground tones, ANSI 16, semantic roles" width="100%"/>
+  <img src="./assets/palette.png" alt="RBR palette — signature pair, background tones, foreground tones, ANSI 16, semantic roles" width="100%"/>
 </p>
 
-> Hero image is the v2.2 palette sheet. Earlier `palette.png` / `preview-terminal.png` were programmatically rendered from a previous schema and are kept in `assets/` for reference only.
+> Rendered programmatically from [`palette.json`](./palette.json) by [`scripts/generate_previews.py`](./scripts/generate_previews.py) — the image stays in lock-step with the source of truth.
 
 &nbsp;
 

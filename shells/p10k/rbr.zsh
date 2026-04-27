@@ -35,7 +35,7 @@
 #       %244F (grey)   -> %F{#6a7495}  subtext0
 #       %240F (grey)   -> %F{#4a5580}  overlay1
 #       %70F  (green)  -> %F{#9cc080}  track_green
-#       %215F (orange) -> %F{#c8c8d0}  crowd_orange
+#       %215F (orange) -> %F{#c8c8d0}  light_grey
 #
 # Requires: powerlevel10k v1.20+ and a truecolor terminal.
 # p10k accepts hex colors natively and downgrades to 256-color when needed.
@@ -51,8 +51,8 @@ local rbr_oracle_blue='#82a0d8'
 local rbr_sky_blue='#a4bde8'
 local rbr_paddock_green='#b8d49e'
 local rbr_track_green='#9cc080'
-local rbr_warm_pink='#a8a8b0'
-local rbr_crowd_orange='#c8c8d0'
+local rbr_cool_grey='#a8a8b0'
+local rbr_light_grey='#c8c8d0'
 local rbr_teal='#95c0c8'
 local rbr_pit_light='#b0d4dc'
 local rbr_text='#c8d0e8'
@@ -102,7 +102,7 @@ typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=$rbr_kerb_bright
 typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=$rbr_subtext1
 
 # ---- Background jobs --------------------------------------------------------
-typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=$rbr_crowd_orange
+typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=$rbr_rb_warm
 
 # ---- Context (user@host) ----------------------------------------------------
 typeset -g POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND=$rbr_subtext1
@@ -118,22 +118,24 @@ typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_FOREGROUND=$rbr_rb_yellow
 typeset -g POWERLEVEL9K_KUBECONTEXT_DEV_FOREGROUND=$rbr_paddock_green
 
 # ---- Python envs (virtualenv, pyenv, anaconda) ------------------------------
-typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=$rbr_crowd_orange
-typeset -g POWERLEVEL9K_PYENV_FOREGROUND=$rbr_crowd_orange
-typeset -g POWERLEVEL9K_ANACONDA_FOREGROUND=$rbr_crowd_orange
+typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=$rbr_paddock_green
+typeset -g POWERLEVEL9K_PYENV_FOREGROUND=$rbr_paddock_green
+typeset -g POWERLEVEL9K_ANACONDA_FOREGROUND=$rbr_paddock_green
 
 # ---- Cloud providers --------------------------------------------------------
-typeset -g POWERLEVEL9K_AWS_DEFAULT_FOREGROUND=$rbr_crowd_orange
-typeset -g POWERLEVEL9K_AWS_EB_ENV_DEFAULT_FOREGROUND=$rbr_crowd_orange
-typeset -g POWERLEVEL9K_GCLOUD_FOREGROUND=$rbr_crowd_orange
-typeset -g POWERLEVEL9K_AZURE_FOREGROUND=$rbr_crowd_orange
+# Cloud context segments use teal — same color the theme reserves for
+# "namespace-like" runtime context.
+typeset -g POWERLEVEL9K_AWS_DEFAULT_FOREGROUND=$rbr_teal
+typeset -g POWERLEVEL9K_AWS_EB_ENV_DEFAULT_FOREGROUND=$rbr_teal
+typeset -g POWERLEVEL9K_GCLOUD_FOREGROUND=$rbr_teal
+typeset -g POWERLEVEL9K_AZURE_FOREGROUND=$rbr_teal
 
 # ---- Language versions ------------------------------------------------------
 typeset -g POWERLEVEL9K_GOENV_FOREGROUND=$rbr_teal
 typeset -g POWERLEVEL9K_NODENV_FOREGROUND=$rbr_paddock_green
 typeset -g POWERLEVEL9K_NVM_FOREGROUND=$rbr_paddock_green
 typeset -g POWERLEVEL9K_RBENV_FOREGROUND=$rbr_kerb_red
-typeset -g POWERLEVEL9K_RUST_VERSION_FOREGROUND=$rbr_crowd_orange
+typeset -g POWERLEVEL9K_RUST_VERSION_FOREGROUND=$rbr_paddock_green
 
 # ---- Docker / Kubernetes ----------------------------------------------------
 typeset -g POWERLEVEL9K_DOCKER_MACHINE_FOREGROUND=$rbr_oracle_blue

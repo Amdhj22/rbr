@@ -1,24 +1,30 @@
 #!/usr/bin/env python3
 """
-Generate preview images for RBR theme.
-Reads palette.json as the single source of truth and renders:
+Generate the README hero image from palette.json (v2.2 schema).
 
-  - assets/palette.png           : full color showcase (accents + neutrals)
-  - assets/preview-terminal.png  : mock terminal UI demonstrating the theme
-
-Usage:
+Run:
     python3 scripts/generate_previews.py
+
+Output:
+    assets/palette.png
 """
 from __future__ import annotations
 
 import json
 from pathlib import Path
+
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
 PALETTE = json.loads((ROOT / "palette.json").read_text())
 ASSETS = ROOT / "assets"
 ASSETS.mkdir(exist_ok=True)
+
+ui = PALETTE["ui"]
+brand = PALETTE["brand"]
+ansi = PALETTE["ansi"]
+sem = PALETTE["semantic"]
+meta = PALETTE["meta"]
 
 
 # ---------------------------------------------------------------------------
@@ -34,6 +40,7 @@ _FONT_CANDIDATES = [
     "/System/Library/Fonts/SFNSMono.ttf",
     "/System/Library/Fonts/Menlo.ttc",
     "/System/Library/Fonts/SFNS.ttf",
+    "/usr/share/fonts/TTF/JetBrainsMono-Regular.ttf",
     "/Library/Fonts/Arial Unicode.ttf",
 ]
 
@@ -48,281 +55,159 @@ def font(size: int) -> ImageFont.FreeTypeFont:
     return ImageFont.load_default()
 
 
-def colors() -> dict:
-    return PALETTE["flavors"]["classic"]["colors"]
-
-
-def by_name(name: str) -> tuple[int, int, int]:
-    return hx(colors()[name]["hex"])
-
-
 def label_on(bg: tuple[int, int, int]) -> tuple[int, int, int]:
-    """Pick a readable label color for a given background using perceptual
-    luminance (Y' = 0.299R + 0.587G + 0.114B). Yellow hues are bright
-    perceptually even when HSL lightness is moderate, so luminance beats
-    HSL.l for this decision."""
+    """Pick a readable label color via Rec. 601 luminance."""
     r, g, b = bg
     y = 0.299 * r + 0.587 * g + 0.114 * b
-    return by_name("base") if y > 140 else by_name("text")
+    return hx(ui["bg"]) if y > 140 else hx(ui["fg"])
+
+
+def chip(d, xy, fill, radius=6, outline=None, width=0):
+    d.rounded_rectangle(xy, radius=radius, fill=fill, outline=outline, width=width)
 
 
 # ---------------------------------------------------------------------------
-# palette showcase
+# hero image
 # ---------------------------------------------------------------------------
 
-def rounded_chip(
-    draw: ImageDraw.ImageDraw,
-    xy: tuple[int, int, int, int],
-    fill: tuple[int, int, int],
-    radius: int = 14,
-) -> None:
-    draw.rounded_rectangle(xy, radius=radius, fill=fill)
-
-
-def generate_palette() -> Path:
-    W, H = 1600, 1100
-    base = by_name("base")
-    img = Image.new("RGB", (W, H), base)
+def palette_hero() -> Path:
+    W, H = 1080, 920
+    img = Image.new("RGB", (W, H), hx(ui["bg"]))
     d = ImageDraw.Draw(img)
 
-    # ---- title block ------------------------------------------------------
-    d.text((60, 52), "RBR", fill=by_name("kerb_red"), font=font(96))
-    d.text(
-        (60, 160),
-        "Red Bull Racing color scheme",
-        fill=by_name("text"),
-        font=font(34),
-    )
-    d.text(
-        (60, 208),
-        "Classic · v2.1.0 · 26 colors",
-        fill=by_name("subtext1"),
-        font=font(22),
-    )
+    # ---- Header ----------------------------------------------------------
+    chip(d, (24, 24, W - 24, 110), hx(ui["bg_float"]), radius=10)
+    d.text((44, 32), "RBR", fill=hx(brand["kerb_red"]), font=font(40))
+    d.text((44, 78),
+           f"v{meta['version']}  ·  Red Bull Racing kerb red × brand yellow",
+           fill=hx(ui["fg_dim"]), font=font(13))
+    chip(d, (W - 92, 38, W - 44, 56), hx(brand["kerb_red"]), radius=4)
+    chip(d, (W - 92, 64, W - 44, 82), hx(brand["rb_yellow"]), radius=4)
 
-    # Kerb-red signature bar on the right
-    rounded_chip(d, (W - 340, 70, W - 60, 90), by_name("kerb_red"), radius=10)
-    rounded_chip(d, (W - 340, 100, W - 60, 112), by_name("rb_yellow"), radius=6)
-    d.text((W - 340, 128), "two-accent scheme", fill=by_name("subtext1"), font=font(20))
+    # ---- Signature pair --------------------------------------------------
+    d.text((28, 130), "SIGNATURE PAIR", fill=hx(ui["fg_subtle"]), font=font(11))
 
-    # ---- accent grid (7 x 2) ---------------------------------------------
-    accents = [k for k, v in colors().items() if v["accent"]]
-    d.text((60, 290), "ACCENTS", fill=by_name("subtext0"), font=font(22))
-    d.line((60, 325, W - 60, 325), fill=by_name("overlay0"), width=1)
+    chip(d, (24, 150, 530, 246), hx(brand["kerb_red"]), radius=8)
+    d.text((44, 162), "KERB RED", fill=hx(ui["bg"]), font=font(20))
+    d.text((44, 192), brand["kerb_red"], fill=hx(ui["bg"]), font=font(13))
+    d.text((44, 218), "primary  ·  active  ·  selected  ·  branch",
+           fill=hx(ui["bg"]), font=font(11))
 
-    ROWS, COLS = 2, 7
-    cell_w = (W - 120 - (COLS - 1) * 18) // COLS
-    cell_h = 140
-    top = 355
+    chip(d, (550, 150, W - 24, 246), hx(brand["rb_yellow"]), radius=8)
+    d.text((570, 162), "RB YELLOW", fill=hx(ui["bg"]), font=font(20))
+    d.text((570, 192), brand["rb_yellow"], fill=hx(ui["bg"]), font=font(13))
+    d.text((570, 218), "attention  ·  notification  ·  cursor  ·  current line",
+           fill=hx(ui["bg"]), font=font(11))
 
-    for idx, name in enumerate(accents):
-        r, c = divmod(idx, COLS)
-        x = 60 + c * (cell_w + 18)
-        y = top + r * (cell_h + 18)
-        info = colors()[name]
-        color = hx(info["hex"])
+    # ---- Background tones (6) -------------------------------------------
+    d.text((28, 268), "BACKGROUND TONES", fill=hx(ui["fg_subtle"]), font=font(11))
+    bg_items = [
+        ("bg",            ui["bg"],            "canvas"),
+        ("bg_dim",        ui["bg_dim"],        "subdued"),
+        ("bg_float",      ui["bg_float"],      "floating"),
+        ("bg_highlight",  ui["bg_highlight"],  "hover"),
+        ("bg_selection",  ui["bg_selection"],  "selected"),
+        ("border",        ui["border"],        "divider"),
+    ]
+    cw = (W - 48 - 5 * 8) // 6
+    cy0, ch = 286, 64
+    for i, (name, hex_, role) in enumerate(bg_items):
+        x = 24 + i * (cw + 8)
+        chip(d, (x, cy0, x + cw, cy0 + ch), hx(hex_), radius=6,
+             outline=hx(ui["fg_subtle"]), width=1)
+        d.text((x + 10, cy0 + 8),  name,  fill=hx(ui["fg"]),       font=font(11))
+        d.text((x + 10, cy0 + 26), hex_,  fill=hx(ui["fg_dim"]),   font=font(10))
+        d.text((x + 10, cy0 + 44), role,  fill=hx(ui["fg_subtle"]), font=font(9))
 
-        rounded_chip(d, (x, y, x + cell_w, y + cell_h), color)
+    # ---- Foreground tones (3) -------------------------------------------
+    d.text((28, 372), "FOREGROUND TONES", fill=hx(ui["fg_subtle"]), font=font(11))
+    fg_items = [
+        ("fg",        ui["fg"],        "primary text"),
+        ("fg_dim",    ui["fg_dim"],    "secondary"),
+        ("fg_subtle", ui["fg_subtle"], "muted / comments"),
+    ]
+    cw3 = (W - 48 - 2 * 8) // 3
+    fy0, fh = 390, 76
+    for i, (name, hex_, role) in enumerate(fg_items):
+        x = 24 + i * (cw3 + 8)
+        chip(d, (x, fy0, x + cw3, fy0 + fh), hx(ui["bg_float"]), radius=6)
+        d.text((x + 14, fy0 + 10), "Aa sample text",
+               fill=hx(hex_), font=font(20))
+        d.text((x + 14, fy0 + 42), f"{name}    {hex_}",
+               fill=hx(ui["fg_dim"]), font=font(10))
+        d.text((x + 14, fy0 + 58), role,
+               fill=hx(ui["fg_subtle"]), font=font(9))
 
-        label_color = label_on(color)
-        d.text((x + 16, y + 14), info["name"], fill=label_color, font=font(20))
-        d.text(
-            (x + 16, y + cell_h - 32),
-            f"#{info['hex']}",
-            fill=label_color,
-            font=font(16),
-        )
+    # ---- ANSI 16 ---------------------------------------------------------
+    d.text((28, 484), "ANSI 16", fill=hx(ui["fg_subtle"]), font=font(11))
+    d.text((W - 350, 484),
+           "Red @ index 1, Yellow @ index 3 (ANSI-correct, tools depend on this)",
+           fill=hx(ui["fg_subtle"]), font=font(9))
+    ansi_keys = [
+        "black", "red", "green", "yellow",
+        "blue", "magenta", "cyan", "white",
+        "bright_black", "bright_red", "bright_green", "bright_yellow",
+        "bright_blue", "bright_magenta", "bright_cyan", "bright_white",
+    ]
+    ay0, row_h = 504, 22
+    half_w = (W - 48) // 2
+    for i, key in enumerate(ansi_keys):
+        col = i // 8
+        row = i % 8
+        x = 24 + col * (half_w + 8)
+        y = ay0 + row * row_h
+        chip(d, (x, y + 2, x + 30, y + 18), hx(ansi[key]), radius=2)
+        d.text((x + 40, y + 3), str(i), fill=hx(ui["fg_subtle"]), font=font(10))
+        d.text((x + 72, y + 3), key,    fill=hx(ui["fg"]),        font=font(11))
+        d.text((x + half_w - 90, y + 3), ansi[key],
+               fill=hx(ui["fg_dim"]), font=font(10))
 
-    # ---- neutral ladder (12 x 1, full-width bar) -------------------------
-    neutrals = [k for k, v in colors().items() if not v["accent"]]
-    # Re-order from darkest to brightest for a readable ladder.
-    neutrals = sorted(neutrals, key=lambda k: colors()[k]["hsl"]["l"])
+    # ---- Semantic roles --------------------------------------------------
+    sy0 = 690
+    d.text((28, sy0), "SEMANTIC ROLES", fill=hx(ui["fg_subtle"]), font=font(11))
 
-    ladder_top = 760
-    d.text((60, ladder_top - 42), "NEUTRAL LAYERS", fill=by_name("subtext0"), font=font(22))
-    d.line((60, ladder_top - 12, W - 60, ladder_top - 12), fill=by_name("overlay0"), width=1)
+    rows = [
+        [
+            ("× red flag",     "error",       sem["error"]["value"]),
+            ("⚠ yellow flag",  "warning",     sem["warning"]["value"]),
+            ("✓ green flag",   "success",     sem["success"]["value"]),
+            ("◆ blue flag",    "info",        sem["info"]["value"]),
+            ("main",           "branch",      sem["branch"]),
+        ],
+        [
+            ("◆ dev",          "k8s_context", sem["k8s_context"]),
+            ("☢ prod",         "k8s_prod",    sem["k8s_prod"]),
+            ("+ added",        "git_added",   sem["git_added"]),
+            ("~ modified",     "git_modified",sem["git_modified"]),
+            ("- deleted",      "git_deleted", sem["git_deleted"]),
+        ],
+    ]
+    cw5 = (W - 48 - 4 * 8) // 5
+    cell_h = 50
+    for ri, row in enumerate(rows):
+        for ci, (text, role, hex_) in enumerate(row):
+            x = 24 + ci * (cw5 + 8)
+            y = sy0 + 18 + ri * (cell_h + 8)
+            chip(d, (x, y, x + cw5, y + cell_h), hx(ui["bg_float"]), radius=6)
+            chip(d, (x, y, x + 4, y + cell_h),  hx(hex_), radius=2)
+            d.text((x + 14, y + 6),  text, fill=hx(hex_),       font=font(13))
+            d.text((x + 14, y + 28), f"{role}  {hex_}",
+                   fill=hx(ui["fg_dim"]), font=font(9))
 
-    bar_w = (W - 120 - 11 * 8) // 12
-    for idx, name in enumerate(neutrals):
-        x = 60 + idx * (bar_w + 8)
-        info = colors()[name]
-        color = hx(info["hex"])
-        chip_box = (x, ladder_top + 10, x + bar_w, ladder_top + 170)
-        rounded_chip(d, chip_box, color, radius=10)
-
-        # Outline for chips that are too close to the page background,
-        # otherwise they disappear.
-        if 0.299 * color[0] + 0.587 * color[1] + 0.114 * color[2] < 20:
-            d.rounded_rectangle(
-                chip_box, radius=10, outline=by_name("overlay0"), width=1
-            )
-
-        label_color = label_on(color)
-        d.text((x + 10, ladder_top + 16), info["name"], fill=label_color, font=font(15))
-        d.text((x + 10, ladder_top + 148), f"#{info['hex']}", fill=label_color, font=font(12))
-
-    # ---- footer -----------------------------------------------------------
-    d.text(
-        (60, H - 54),
-        "github.com/Amdhj22/rbr-theme",
-        fill=by_name("subtext1"),
-        font=font(18),
-    )
-    d.text(
-        (W - 340, H - 54),
-        "MIT License",
-        fill=by_name("subtext1"),
-        font=font(18),
-    )
+    # ---- Footer ----------------------------------------------------------
+    d.text((28, H - 38), "github.com/Amdhj22/rbr",
+           fill=hx(ui["fg_dim"]), font=font(11))
+    d.text((W - 240, H - 38), f"MIT License  ·  v{meta['version']}",
+           fill=hx(ui["fg_dim"]), font=font(11))
 
     out = ASSETS / "palette.png"
     img.save(out, "PNG", optimize=True)
     return out
 
 
-# ---------------------------------------------------------------------------
-# mock terminal preview
-# ---------------------------------------------------------------------------
-
-def generate_terminal() -> Path:
-    """A mocked terminal window showing prompt + git status + ls + neovim strip."""
-    W, H = 1600, 1000
-    base = by_name("base")
-    img = Image.new("RGB", (W, H), by_name("mantle"))
-    d = ImageDraw.Draw(img)
-
-    # --- window chrome ----------------------------------------------------
-    chrome_h = 54
-    d.rounded_rectangle((30, 30, W - 30, H - 30), radius=18, fill=base)
-    d.rounded_rectangle((30, 30, W - 30, 30 + chrome_h), radius=18, fill=by_name("surface0"))
-    # square the bottom of the chrome so it blends into the body
-    d.rectangle((30, 30 + chrome_h - 18, W - 30, 30 + chrome_h), fill=by_name("surface0"))
-
-    # traffic lights
-    cx = 58
-    for i, c in enumerate([by_name("kerb_bright"), by_name("rb_warm"), by_name("paddock_green")]):
-        d.ellipse((cx + i * 22, 30 + chrome_h // 2 - 8, cx + i * 22 + 16, 30 + chrome_h // 2 + 8), fill=c)
-
-    # tabs in chrome
-    tab_y = 30 + 10
-    d.rounded_rectangle((150, tab_y, 370, tab_y + 34), radius=8, fill=by_name("surface2"))
-    d.text((164, tab_y + 7), "zsh · ~/dev/rbr-theme", fill=by_name("text"), font=font(18))
-    # active tab indicator (kerb red bar)
-    d.rectangle((150, tab_y + 30, 370, tab_y + 34), fill=by_name("kerb_red"))
-
-    d.rounded_rectangle((384, tab_y, 560, tab_y + 34), radius=8, fill=by_name("surface1"))
-    d.text((398, tab_y + 7), "nvim", fill=by_name("subtext1"), font=font(18))
-
-    # --- body -------------------------------------------------------------
-    mono = font(22)
-    y = chrome_h + 70
-    line_h = 32
-    x = 74
-
-    def line(segments: list[tuple[str, tuple[int, int, int]]], yy: int):
-        cx = x
-        for text, col in segments:
-            d.text((cx, yy), text, fill=col, font=mono)
-            # width approximation; SFNSMono at size 22 ≈ 13.2 px per char
-            cx += int(len(text) * 13.2)
-
-    text_col = by_name("text")
-    sub = by_name("subtext1")
-    red = by_name("kerb_red")
-    yellow = by_name("rb_yellow")
-    warm = by_name("rb_warm")
-    green = by_name("paddock_green")
-    green_sub = by_name("track_green")
-    blue = by_name("oracle_blue")
-    sky = by_name("sky_blue")
-    orange = by_name("crowd_orange")
-    err = by_name("kerb_bright")
-
-    # prompt 1: git status
-    line([
-        ("~/dev/rbr-theme ", sky),
-        ("on ", sub),
-        ("git:", sub), ("main", red),
-        ("  [", sub), ("!2", yellow), (" ?1", warm), ("]", sub),
-    ], y); y += line_h
-    line([("> ", yellow), ("git status --short", text_col)], y); y += line_h
-    line([(" M ", yellow), ("README.md", text_col)], y); y += line_h
-    line([(" M ", yellow), ("palette.json", text_col)], y); y += line_h
-    line([("?? ", warm), ("assets/palette.png", text_col)], y); y += line_h
-    y += 8
-
-    # prompt 2: ls
-    line([
-        ("~/dev/rbr-theme ", sky),
-        ("on ", sub),
-        ("git:", sub), ("main", red),
-    ], y); y += line_h
-    line([("> ", yellow), ("ls -la", text_col)], y); y += line_h
-    line([("drwxr-xr-x  ", sub), ("assets", sky), ("/", sub)], y); y += line_h
-    line([("drwxr-xr-x  ", sub), ("scripts", sky), ("/", sub)], y); y += line_h
-    line([("drwxr-xr-x  ", sub), ("terminals", sky), ("/", sub)], y); y += line_h
-    line([("-rw-r--r--  ", sub), ("LICENSE", green_sub)], y); y += line_h
-    line([("-rw-r--r--  ", sub), ("README.md", green_sub)], y); y += line_h
-    line([("-rw-r--r--  ", sub), ("STYLE-GUIDE.md", green_sub)], y); y += line_h
-    line([("-rw-r--r--  ", sub), ("palette.json", green_sub)], y); y += line_h
-    y += 8
-
-    # prompt 3: test run (success)
-    line([
-        ("~/dev/rbr-theme ", sky),
-        ("on ", sub),
-        ("git:", sub), ("main", red),
-    ], y); y += line_h
-    line([("> ", yellow), ("cargo test", text_col)], y); y += line_h
-    line([("   Compiling", green_sub), (" rbr-theme v2.1.0", text_col)], y); y += line_h
-    line([("    Finished", green), (" test [optimized] in 1.82s", sub)], y); y += line_h
-    line([("running 12 tests", text_col)], y); y += line_h
-    line([
-        ("test result: ", text_col),
-        ("ok", green),
-        (". ", text_col),
-        ("12", green),
-        (" passed; ", text_col),
-        ("0", sub), (" failed; ", text_col),
-        ("0", sub), (" ignored", text_col),
-    ], y); y += line_h
-    y += 8
-
-    # prompt 4: k8s context line (shows prod warning in red)
-    line([
-        ("~/dev/rbr-theme ", sky),
-        ("on ", sub),
-        ("git:", sub), ("main", red),
-        ("  k8s:", blue), ("eks-prod", err), ("/", sub), ("api", orange),
-    ], y); y += line_h
-
-    # current line: active prompt with cursor
-    line([("> ", yellow)], y)
-    # cursor block right after the "> "
-    d.rectangle((x + 28, y + 2, x + 28 + 14, y + 28), fill=yellow)
-
-    # --- footer caption ---------------------------------------------------
-    d.text(
-        (74, H - 70),
-        "Ghostty / iTerm2 · Classic flavor",
-        fill=by_name("subtext0"),
-        font=font(18),
-    )
-
-    out = ASSETS / "preview-terminal.png"
-    img.save(out, "PNG", optimize=True)
-    return out
-
-
-# ---------------------------------------------------------------------------
-# entry point
-# ---------------------------------------------------------------------------
-
 def main() -> None:
-    p1 = generate_palette()
-    p2 = generate_terminal()
-    print(f"wrote {p1.relative_to(ROOT)}")
-    print(f"wrote {p2.relative_to(ROOT)}")
+    p = palette_hero()
+    print(f"wrote {p.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":
