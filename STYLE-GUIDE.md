@@ -14,7 +14,8 @@ Three principles govern every color choice:
 
 1. **Red means "this one."** Kerb Red marks the *single* active/selected thing on screen — the current branch, the active tab, the focused pane. If two things are red, neither reads as primary.
 2. **Yellow means "look here now."** RB Yellow marks urgency — the cursor, an unread notification, a modified file, a warning. It is motion in a still image.
-3. **Everything else steps back.** Greens, blues, cyans, and magentas stay in a narrow pastel band (HSL lightness 60–78). They exist to classify content, not to compete with the brand pair.
+3. **Everything else steps back.** Greens, blues, and cyans stay in a narrow pastel band (HSL lightness 60–78). They exist to classify content, not to compete with the brand pair.
+4. **Magenta is intentionally neutral grey.** Numbers and constants get visual weight without color noise — the magenta slot is reserved for that, not for another saturated accent.
 
 If you ever feel like adding a third "shouty" color, you are drifting away from RBR. Use a layer (`surface*`, `overlay*`) instead.
 
@@ -52,8 +53,8 @@ Accents are ordered by visual priority:
 |     7 | Sky Blue        | `#a4bde8` | info-bright      | Directories, renamed files                    |
 |     8 | Track Green     | `#9cc080` | success-subtle   | ANSI green slot, hostname, staged files       |
 |     9 | Paddock Green   | `#b8d49e` | success          | Test passes, successful runs, added files     |
-|    10 | Warm Pink       | `#d49880` | magenta          | ANSI magenta slot                             |
-|    11 | Crowd Orange    | `#e8b498` | accent-warm      | Namespaces, tertiary highlights               |
+|    10 | Cool Grey       | `#a8a8b0` | magenta-neutral  | ANSI magenta slot — intentionally desaturated |
+|    11 | Light Grey      | `#c8c8d0` | bright-neutral   | Numbers, constants — visual weight without color noise |
 |    12 | Teal            | `#95c0c8` | cyan             | ANSI cyan slot, hint text                     |
 |    13 | Pit Light       | `#b0d4dc` | hint             | Subtle guidance, pit-lane signals             |
 
@@ -102,10 +103,10 @@ Low-saturation colors arranged on a **lightness ladder** from deepest background
 | ---------------- | -------------- | ---------------------------------------------------------- |
 | Keywords         | `kerb_red`     | Control flow is the "verb" — the most important syntax element. |
 | Strings          | `paddock_green`| Data content reads calmly.                                 |
-| Numbers          | `crowd_orange` | Distinct from strings without being loud.                  |
+| Numbers          | `light_grey`   | Visible but no color noise — the v2.2 magenta-neutral idea. |
 | Functions        | `oracle_blue`  | Named operations.                                          |
 | Types / Classes  | `rb_yellow`    | Structure declarations earn attention.                     |
-| Constants        | `warm_pink`    | Immutable values, tinted warm.                             |
+| Constants        | `cool_grey`    | Immutable values get weight without competing with accents. |
 | Variables        | `text`         | The default — no color is also a choice.                   |
 | Comments         | `subtext0`     | Visible but clearly deprioritized.                         |
 | Operators / Punct| `subtext1`     | Present but not loud.                                      |
@@ -135,7 +136,7 @@ Low-saturation colors arranged on a **lightness ladder** from deepest background
 | Hostname                    | `track_green`  |
 | User                        | `rb_yellow`    |
 | k8s context                 | `oracle_blue`  |
-| k8s namespace               | `crowd_orange` |
+| k8s namespace               | `teal`         |
 | k8s production indicator    | `kerb_bright`  |
 | Elapsed time / exit status  | `subtext1` (ok), `kerb_bright` (fail) |
 
@@ -152,21 +153,21 @@ Ports that only expose 16 ANSI slots should use this canonical mapping. Every te
 |    2 | green           | `track_green`   | `#9cc080` |
 |    3 | yellow          | `rb_warm`       | `#f5c842` |
 |    4 | blue            | `oracle_blue`   | `#82a0d8` |
-|    5 | magenta         | `warm_pink`     | `#d49880` |
+|    5 | magenta         | `cool_grey`     | `#a8a8b0` |
 |    6 | cyan            | `teal`          | `#95c0c8` |
-|    7 | white           | `subtext1`      | `#8590ae` |
+|    7 | white           | `text`          | `#c8d0e8` |
 |    8 | bright black    | `overlay0`      | `#3a4466` |
 |    9 | bright red      | `kerb_bright`   | `#f56570` |
 |   10 | bright green    | `paddock_green` | `#b8d49e` |
 |   11 | bright yellow   | `rb_yellow`     | `#ffd84d` |
 |   12 | bright blue     | `sky_blue`      | `#a4bde8` |
-|   13 | bright magenta  | `crowd_orange`  | `#e8b498` |
+|   13 | bright magenta  | `light_grey`    | `#c8c8d0` |
 |   14 | bright cyan     | `pit_light`     | `#b0d4dc` |
-|   15 | bright white    | `text`          | `#c8d0e8` |
+|   15 | bright white    | `track_line`    | `#e8ecf5` |
 
 Notes:
 - `ansi.yellow` (slot 3) uses `rb_warm` rather than `rb_yellow` so bulk yellow text stays readable — `rb_yellow` is saved for the bright slot and the cursor.
-- `ansi.white` (slot 7) uses `subtext1`, not `text`, so `text` remains distinctly "brightest" when rendered via slot 15.
+- `ansi.bright_white` (slot 15) uses a dedicated `#e8ecf5` (the same value `special.track_line` exposes) so it sits one step brighter than `text` (slot 7). v2.1 had the two slots collapsed; v2.2 separates them again so `man` pages and `bat` headers get a distinctly hotter white.
 
 ---
 

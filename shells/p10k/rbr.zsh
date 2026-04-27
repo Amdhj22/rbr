@@ -35,7 +35,7 @@
 #       %244F (grey)   -> %F{#6a7495}  subtext0
 #       %240F (grey)   -> %F{#4a5580}  overlay1
 #       %70F  (green)  -> %F{#9cc080}  track_green
-#       %215F (orange) -> %F{#e8b498}  crowd_orange
+#       %215F (orange) -> %F{#c8c8d0}  crowd_orange
 #
 # Requires: powerlevel10k v1.20+ and a truecolor terminal.
 # p10k accepts hex colors natively and downgrades to 256-color when needed.
@@ -51,8 +51,8 @@ local rbr_oracle_blue='#82a0d8'
 local rbr_sky_blue='#a4bde8'
 local rbr_paddock_green='#b8d49e'
 local rbr_track_green='#9cc080'
-local rbr_warm_pink='#d49880'
-local rbr_crowd_orange='#e8b498'
+local rbr_warm_pink='#a8a8b0'
+local rbr_crowd_orange='#c8c8d0'
 local rbr_teal='#95c0c8'
 local rbr_pit_light='#b0d4dc'
 local rbr_text='#c8d0e8'

@@ -29,14 +29,10 @@ If you like schemes where the cursor, active tab, and current branch genuinely s
 ## 🏎️ Previews
 
 <p align="center">
-  <img src="./assets/palette.png" alt="RBR palette — 14 accents and 12 neutral layers" width="100%"/>
+  <img src="./assets/rbr-palette-v2.2.png" alt="RBR palette v2.2 — signature pair, background tones, foreground tones, ANSI 16, semantic roles" width="100%"/>
 </p>
 
-<p align="center">
-  <img src="./assets/preview-terminal.png" alt="RBR in a terminal — prompt, git status, ls, cargo test, and a kubectl context line" width="100%"/>
-</p>
-
-> Both images are rendered programmatically from [`palette.json`](./palette.json) via [`scripts/generate_previews.py`](./scripts/generate_previews.py) — so they stay in sync with the source of truth. Run the script yourself to regenerate.
+> Hero image is the v2.2 palette sheet. Earlier `palette.png` / `preview-terminal.png` were programmatically rendered from a previous schema and are kept in `assets/` for reference only.
 
 &nbsp;
 
@@ -60,8 +56,8 @@ Ordered by visual priority. **Kerb Red** and **RB Yellow** are the only "loud" c
 | ![](https://img.shields.io/badge/-Sky_Blue-a4bde8?style=flat-square&color=a4bde8) | Sky Blue | `#a4bde8` | directories, renamed |
 | ![](https://img.shields.io/badge/-Track_Green-9cc080?style=flat-square&color=9cc080) | Track Green | `#9cc080` | ANSI green, hostname |
 | ![](https://img.shields.io/badge/-Paddock_Green-b8d49e?style=flat-square&color=b8d49e) | Paddock Green | `#b8d49e` | success, added |
-| ![](https://img.shields.io/badge/-Warm_Pink-d49880?style=flat-square&color=d49880) | Warm Pink | `#d49880` | ANSI magenta |
-| ![](https://img.shields.io/badge/-Crowd_Orange-e8b498?style=flat-square&color=e8b498) | Crowd Orange | `#e8b498` | namespaces, tertiary |
+| ![](https://img.shields.io/badge/-Cool_Grey-a8a8b0?style=flat-square&color=a8a8b0) | Cool Grey | `#a8a8b0` | ANSI magenta — intentionally neutral |
+| ![](https://img.shields.io/badge/-Light_Grey-c8c8d0?style=flat-square&color=c8c8d0) | Light Grey | `#c8c8d0` | ANSI bright_magenta — numbers / constants without color noise |
 | ![](https://img.shields.io/badge/-Teal-95c0c8?style=flat-square&color=95c0c8) | Teal | `#95c0c8` | ANSI cyan, hint |
 | ![](https://img.shields.io/badge/-Pit_Light-b0d4dc?style=flat-square&color=b0d4dc) | Pit Light | `#b0d4dc` | subtle guidance |
 
