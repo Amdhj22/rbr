@@ -53,8 +53,8 @@ local rbr_paddock_green='#b8d49e'
 local rbr_track_green='#9cc080'
 local rbr_cool_grey='#a8a8b0'
 local rbr_light_grey='#c8c8d0'
-local rbr_teal='#2563eb'
-local rbr_pit_light='#b0d4dc'
+local rbr_livery_blue='#2563eb'
+local rbr_livery_blue_bright='#4D7EFF'
 local rbr_text='#c8d0e8'
 local rbr_subtext1='#8590ae'
 local rbr_subtext0='#6a7495'
@@ -123,15 +123,15 @@ typeset -g POWERLEVEL9K_PYENV_FOREGROUND=$rbr_paddock_green
 typeset -g POWERLEVEL9K_ANACONDA_FOREGROUND=$rbr_paddock_green
 
 # ---- Cloud providers --------------------------------------------------------
-# Cloud context segments use teal — same color the theme reserves for
+# Cloud context segments use livery_blue — same color the theme reserves for
 # "namespace-like" runtime context.
-typeset -g POWERLEVEL9K_AWS_DEFAULT_FOREGROUND=$rbr_teal
-typeset -g POWERLEVEL9K_AWS_EB_ENV_DEFAULT_FOREGROUND=$rbr_teal
-typeset -g POWERLEVEL9K_GCLOUD_FOREGROUND=$rbr_teal
-typeset -g POWERLEVEL9K_AZURE_FOREGROUND=$rbr_teal
+typeset -g POWERLEVEL9K_AWS_DEFAULT_FOREGROUND=$rbr_livery_blue
+typeset -g POWERLEVEL9K_AWS_EB_ENV_DEFAULT_FOREGROUND=$rbr_livery_blue
+typeset -g POWERLEVEL9K_GCLOUD_FOREGROUND=$rbr_livery_blue
+typeset -g POWERLEVEL9K_AZURE_FOREGROUND=$rbr_livery_blue
 
 # ---- Language versions ------------------------------------------------------
-typeset -g POWERLEVEL9K_GOENV_FOREGROUND=$rbr_teal
+typeset -g POWERLEVEL9K_GOENV_FOREGROUND=$rbr_livery_blue
 typeset -g POWERLEVEL9K_NODENV_FOREGROUND=$rbr_paddock_green
 typeset -g POWERLEVEL9K_NVM_FOREGROUND=$rbr_paddock_green
 typeset -g POWERLEVEL9K_RBENV_FOREGROUND=$rbr_kerb_red

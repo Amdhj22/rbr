@@ -67,7 +67,7 @@
     "bright_yellow":  "#ffd84d",
     "bright_blue":    "#a4bde8",
     "bright_magenta": "#c8c8d0",
-    "bright_cyan":    "#b0d4dc",
+    "bright_cyan":    "#4D7EFF",
     "bright_white":   "#e8ecf5"
   },
 
@@ -78,8 +78,8 @@
     "warning":  { "value": "#ffd84d", "ansi": "bright_yellow", "metaphor": "yellow flag / RB bull silhouette" },
     "success":  { "value": "#b8d49e", "ansi": "bright_green",  "metaphor": "green flag" },
     "info":     { "value": "#a4bde8", "ansi": "bright_blue",   "metaphor": "blue flag (being lapped)" },
-    "hint":     { "value": "#b0d4dc", "ansi": "bright_cyan",   "metaphor": "pit lane light" },
-    "accent":   { "value": "#b0d4dc", "ansi": "bright_cyan",   "metaphor": "horizon glow (was crowd orange)" },
+    "hint":     { "value": "#4D7EFF", "ansi": "bright_cyan",   "metaphor": "pit lane light" },
+    "accent":   { "value": "#4D7EFF", "ansi": "bright_cyan",   "metaphor": "horizon glow (was crowd orange)" },
 
     "_git": "Git status. Deleted uses kerb red bright, modified uses RB yellow.",
     "git_added":    "#b8d49e",

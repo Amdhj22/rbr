@@ -56,8 +56,8 @@ Accents are ordered by visual priority:
 |     9 | Paddock Green   | `#b8d49e` | success          | Test passes, successful runs, added files     |
 |    10 | Cool Grey       | `#a8a8b0` | magenta-neutral  | ANSI magenta slot — intentionally desaturated |
 |    11 | Light Grey      | `#c8c8d0` | bright-neutral   | Numbers, constants — visual weight without color noise |
-|    12 | Teal            | `#2563eb` | cyan             | ANSI cyan slot, hint text                     |
-|    13 | Pit Light       | `#b0d4dc` | hint             | Subtle guidance, pit-lane signals             |
+|    12 | Livery Blue            | `#2563eb` | cyan             | ANSI cyan slot, hint text                     |
+|    13 | Livery Blue Bright       | `#4D7EFF` | hint             | Subtle guidance, pit-lane signals             |
 
 ### 2. Neutral layers (12 total)
 
@@ -120,7 +120,7 @@ Low-saturation colors arranged on a **lightness ladder** from deepest background
 | Error       | `kerb_bright`    |
 | Warning     | `rb_yellow`      |
 | Info        | `oracle_blue`    |
-| Hint        | `pit_light`      |
+| Hint        | `livery_blue_bright`      |
 | Added       | `paddock_green`  |
 | Modified    | `rb_yellow`      |
 | Deleted     | `kerb_bright`    |
@@ -137,7 +137,7 @@ Low-saturation colors arranged on a **lightness ladder** from deepest background
 | Hostname                    | `track_green`  |
 | User                        | `rb_yellow`    |
 | k8s context                 | `oracle_blue`  |
-| k8s namespace               | `teal`         |
+| k8s namespace               | `livery_blue`         |
 | k8s production indicator    | `kerb_bright`  |
 | Elapsed time / exit status  | `subtext1` (ok), `kerb_bright` (fail) |
 
@@ -155,7 +155,7 @@ Ports that only expose 16 ANSI slots should use this canonical mapping. Every te
 |    3 | yellow          | `rb_warm`       | `#f5c842` |
 |    4 | blue            | `oracle_blue`   | `#82a0d8` |
 |    5 | magenta         | `cool_grey`     | `#a8a8b0` |
-|    6 | cyan            | `teal`          | `#2563eb` |
+|    6 | cyan            | `livery_blue`          | `#2563eb` |
 |    7 | white           | `text`          | `#c8d0e8` |
 |    8 | bright black    | `overlay0`      | `#3a4466` |
 |    9 | bright red      | `kerb_bright`   | `#f56570` |
@@ -163,7 +163,7 @@ Ports that only expose 16 ANSI slots should use this canonical mapping. Every te
 |   11 | bright yellow   | `rb_yellow`     | `#ffd84d` |
 |   12 | bright blue     | `sky_blue`      | `#a4bde8` |
 |   13 | bright magenta  | `light_grey`    | `#c8c8d0` |
-|   14 | bright cyan     | `pit_light`     | `#b0d4dc` |
+|   14 | bright cyan     | `livery_blue_bright`     | `#4D7EFF` |
 |   15 | bright white    | `track_line`    | `#e8ecf5` |
 
 Notes:

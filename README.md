@@ -59,8 +59,8 @@ Ordered by visual priority. **Kerb Red** and **RB Yellow** are the only "loud" c
 | ![](https://img.shields.io/badge/-Paddock_Green-b8d49e?style=flat-square&color=b8d49e) | Paddock Green | `#b8d49e` | success, added |
 | ![](https://img.shields.io/badge/-Cool_Grey-a8a8b0?style=flat-square&color=a8a8b0) | Cool Grey | `#a8a8b0` | ANSI magenta — intentionally neutral |
 | ![](https://img.shields.io/badge/-Light_Grey-c8c8d0?style=flat-square&color=c8c8d0) | Light Grey | `#c8c8d0` | ANSI bright_magenta — numbers / constants without color noise |
-| ![](https://img.shields.io/badge/-Teal-2563eb?style=flat-square&color=2563eb) | Teal | `#2563eb` | ANSI cyan, hint |
-| ![](https://img.shields.io/badge/-Pit_Light-b0d4dc?style=flat-square&color=b0d4dc) | Pit Light | `#b0d4dc` | subtle guidance |
+| ![](https://img.shields.io/badge/-Livery Blue-2563eb?style=flat-square&color=2563eb) | Livery Blue | `#2563eb` | ANSI cyan, hint |
+| ![](https://img.shields.io/badge/-Pit_Light-4D7EFF?style=flat-square&color=4D7EFF) | Livery Blue Bright | `#4D7EFF` | subtle guidance |
 
 ### Neutral layers — the lightness ladder
 

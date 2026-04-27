@@ -42,7 +42,7 @@ filekinds:
   socket:       {foreground: "#8590ae"}   # subtext1
   special:      {foreground: "#c8c8d0"}   # light_grey
   executable:   {foreground: "#b8d49e"}   # paddock_green
-  mount_point:  {foreground: "#2563eb"}   # teal
+  mount_point:  {foreground: "#2563eb"}   # livery_blue
 
 # ---- Permission bits -------------------------------------------------------
 # user_* bits bold so your own rights pop; group/other stay plain.
@@ -66,7 +66,7 @@ perms:
 # (per the Red-means-attention rule).
 size:
   major:        {foreground: "#8590ae"}   # subtext1
-  minor:        {foreground: "#2563eb"}   # teal
+  minor:        {foreground: "#2563eb"}   # livery_blue
   number_byte:  {foreground: "#8590ae"}
   number_kilo:  {foreground: "#8590ae"}
   number_mega:  {foreground: "#82a0d8"}   # oracle_blue
@@ -124,7 +124,7 @@ file_type:
   image:      {foreground: "#ffd84d"}   # rb_yellow
   video:      {foreground: "#e84a55"}   # kerb_red
   music:      {foreground: "#b8d49e"}   # paddock_green
-  lossless:   {foreground: "#2563eb"}   # teal
+  lossless:   {foreground: "#2563eb"}   # livery_blue
   crypto:     {foreground: "#6a7495"}   # subtext0
   document:   {foreground: "#c8d0e8"}   # text
   compressed: {foreground: "#a8a8b0"}   # cool_grey
