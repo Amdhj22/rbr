@@ -117,7 +117,8 @@ Everything below reads from [`palette.json`](./palette.json) as the single sourc
 | Port | Status | Repo |
 | ---- | :----: | ---- |
 | Neovim | ✅ | [Amdhj22/rbr.nvim](https://github.com/Amdhj22/rbr.nvim) |
-| VS Code | 🚧 | planned |
+| VS Code | ✅ | [Amdhj22/rbr.vscode](https://github.com/Amdhj22/rbr.vscode) |
+| Obsidian | ✅ | [Amdhj22/rbr.obsidian](https://github.com/Amdhj22/rbr.obsidian) |
 
 ### Tools
 
