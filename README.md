@@ -125,6 +125,7 @@ Everything below reads from [`palette.json`](./palette.json) as the single sourc
 | Port | Status | Path |
 | ---- | :----: | ---- |
 | [eza](./tools/eza/) | ✅ | [`tools/eza/theme.yml`](./tools/eza/theme.yml) |
+| [k9s](./tools/k9s/) | ✅ | [`tools/k9s/skin.yaml`](./tools/k9s/skin.yaml) |
 | bat | 🚧 | planned |
 | delta | 🚧 | planned |
 | fzf | 🚧 | planned |
@@ -203,6 +204,31 @@ eza --color=always -l
 > **Heads-up**: on eza 0.15+ the YAML theme is supported, but versions ≤ 0.23.x fall through to the built-in default when relying on the `$XDG_CONFIG_HOME/eza/theme.yml` auto-discovery path. Setting `EZA_CONFIG_DIR` explicitly (as above) is the reliable way.
 
 Requires eza 0.15+ and a truecolor terminal.
+
+### k9s
+
+```bash
+# 1. Drop the skin in place
+#    Linux:
+mkdir -p ~/.config/k9s/skins
+curl -fsSL https://raw.githubusercontent.com/Amdhj22/rbr/main/tools/k9s/skin.yaml \
+  -o ~/.config/k9s/skins/rbr.yaml
+#    macOS (without XDG_CONFIG_HOME):
+mkdir -p "$HOME/Library/Application Support/k9s/skins"
+curl -fsSL https://raw.githubusercontent.com/Amdhj22/rbr/main/tools/k9s/skin.yaml \
+  -o "$HOME/Library/Application Support/k9s/skins/rbr.yaml"
+
+# 2. Reference the skin from k9s config (config.yaml in the same parent dir):
+#      k9s:
+#        ui:
+#          skin: rbr        # filename without the .yaml extension
+
+# 3. Restart k9s
+```
+
+> **Heads-up**: if colors render as muted/grey instead of the intended hex values, your terminal stack is likely falling back to ANSI 16-color. k9s uses tcell, which honors `COLORTERM=truecolor` and a tmux `RGB`/`Tc` capability. Inside tmux, ensure your config has `set -ag terminal-overrides ",xterm-256color:RGB"` (or the equivalent `terminal-features` directive on tmux 3.2+).
+
+Requires k9s 0.30+ and a truecolor-capable terminal.
 
 &nbsp;
 

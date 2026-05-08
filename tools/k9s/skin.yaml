@@ -1,0 +1,196 @@
+# =============================================================================
+# RBR — Red Bull Racing theme for k9s
+# Version: 2.3.0-classic
+# =============================================================================
+#
+# k9s is a terminal UI for Kubernetes.  This file is a YAML "skin" that paints
+# the body, frame, dialogs, table cursor, YAML/log views, and the bottom status
+# strip in the RBR palette.
+#
+# Design philosophy (mirrors palette.json):
+#   - Kerb Red    (#e84a55) : PRIMARY   — selected row, focused border, primary
+#                                         button. Exactly one red anchor on screen.
+#   - RB Yellow   (#ffd84d) : SECONDARY — "attention now": menu hotkeys, info
+#                                         labels, title highlight, sort indicator.
+#   - Oracle Blue (#82a0d8) : TERTIARY  — informational accents (counters,
+#                                         filters, YAML keys).
+#   - Greens / pastels stay quiet so the red/yellow trio always wins the eye.
+#   - Background is the canonical RBR navy (#0a1128); panels float on a slightly
+#     lighter navy (#121a36) so dialogs read as elevated surfaces.
+#
+# Install (full quickstart at the bottom of this file):
+#   1. Copy this file to:
+#        Linux : ~/.config/k9s/skins/rbr.yaml
+#        macOS : ~/Library/Application Support/k9s/skins/rbr.yaml
+#   2. Reference the skin from k9s config:
+#        k9s:
+#          ui:
+#            skin: rbr        # filename without the .yaml extension
+#   3. Restart k9s.  Tail ~/Library/Logs/k9s/k9s.log if colors do not change —
+#      a typo in the skin causes k9s to silently fall back to the default theme.
+#
+# Per-context variant (k9s 0.30+):
+#   ~/.config/k9s/contexts/<cluster>/<context>/config.yaml
+#       k9s:
+#         ui:
+#           skin: rbr
+#
+# Requires: k9s 0.30+ (current skin schema) and a truecolor terminal.
+# =============================================================================
+
+k9s:
+  # ---- Body --------------------------------------------------------------
+  # The base canvas. Logo gets the kerb-red anchor so the brand is visible
+  # the moment k9s opens.
+  body:
+    fgColor:    "#c8d0e8"   # text
+    bgColor:    "#0a1128"   # navy (canonical bg)
+    logoColor:  "#e84a55"   # kerb_red — brand anchor
+
+  # ---- Prompt (":" command line, filter, search) -------------------------
+  prompt:
+    fgColor:      "#c8d0e8"
+    bgColor:      "#0a1128"
+    suggestColor: "#8590ae"   # subtext1 — autocomplete hint stays muted
+
+  # ---- Info (top-left "Context:", "Cluster:" labels) ---------------------
+  # Yellow on labels = "this is metadata you should glance at".
+  info:
+    fgColor:      "#ffd84d"   # rb_yellow — labels
+    sectionColor: "#c8d0e8"   # text       — values
+
+  # ---- Dialogs (confirm, port-forward, etc.) -----------------------------
+  dialog:
+    fgColor:            "#c8d0e8"
+    bgColor:            "#121a36"   # bg_float — elevated surface
+    buttonFgColor:      "#0a1128"
+    buttonBgColor:      "#e84a55"   # kerb_red — primary action
+    buttonFocusFgColor: "#0a1128"
+    buttonFocusBgColor: "#ffd84d"   # rb_yellow — focused = "attention now"
+    labelFgColor:       "#a4bde8"   # oracle_blue_bright
+    fieldFgColor:       "#c8d0e8"
+
+  # ---- Frame (everything outside the data view) --------------------------
+  frame:
+    # Border around panels. Focused panel turns kerb-red so you always know
+    # which pane keystrokes will land in.
+    border:
+      fgColor:    "#1f2a52"   # bg_selection — idle border
+      focusColor: "#e84a55"   # kerb_red     — "this is the active pane"
+
+    # Bottom menu strip (the <a> All <ctrl-d> Delete ... line).
+    menu:
+      fgColor:     "#c8d0e8"
+      keyColor:    "#ffd84d"   # rb_yellow — hotkey letters pop
+      numKeyColor: "#ffd84d"
+
+    # Breadcrumbs (top-left navigation: pods → pod → containers).
+    crumbs:
+      fgColor:     "#0a1128"
+      bgColor:     "#e84a55"   # kerb_red — current crumb segment
+      activeColor: "#ffd84d"   # rb_yellow — active step
+
+    # Resource status colors (shown on table rows / counters).
+    status:
+      newColor:       "#a4bde8"   # oracle_blue_bright — newly created
+      modifyColor:    "#ffd84d"   # rb_yellow          — modified
+      addColor:       "#b8d49e"   # paddock_green      — added/healthy
+      errorColor:     "#f56570"   # kerb_bright        — error
+      highlightColor: "#ffd84d"   # rb_yellow          — emphasis
+      killColor:      "#a8a8b0"   # cool_grey          — terminating
+      completedColor: "#565f80"   # fg_subtle          — completed/done
+
+    # Title bar of each view (e.g. "Pods(default)[12]").
+    title:
+      fgColor:        "#c8d0e8"
+      bgColor:        "#0a1128"
+      highlightColor: "#ffd84d"   # rb_yellow — namespace / scope
+      counterColor:   "#a4bde8"   # oracle_blue_bright — [n] counter
+      filterColor:    "#82a0d8"   # oracle_blue        — /filter expression
+
+  # ---- Views (per-screen overrides) --------------------------------------
+  views:
+
+    # Charts (Pulse view: CPU/MEM gauges, etc.)
+    charts:
+      bgColor:           "default"
+      # Two-color gradient: green (good) → red (saturated/danger).
+      defaultDialColors:  ["#b8d49e", "#f56570"]
+      defaultChartColors: ["#b8d49e", "#f56570"]
+      resourceColors:
+        cpu:    ["#82a0d8", "#e84a55"]   # oracle_blue → kerb_red
+        memory: ["#b8d49e", "#ffd84d"]   # paddock_green → rb_yellow
+
+    # Tables (the main pod / deployment / etc. lists).
+    # Cursor row gets the kerb-red background — this is THE "selected = red"
+    # signature of the theme.
+    table:
+      fgColor:       "#c8d0e8"
+      bgColor:       "#0a1128"
+      cursorFgColor: "#0a1128"
+      cursorBgColor: "#e84a55"   # kerb_red — selected row
+      header:
+        fgColor:     "#ffd84d"   # rb_yellow — column headers
+        bgColor:     "#0a1128"
+        sorterColor: "#e84a55"   # kerb_red  — active sort column indicator
+      mark:
+        fgColor: "#ffd84d"       # rb_yellow — marked rows (space key)
+        bgColor: "#0a1128"
+
+    # XRay (tree view of resource ownership).
+    xray:
+      fgColor:      "#c8d0e8"
+      bgColor:      "#0a1128"
+      cursorColor:  "#1f2a52"   # bg_selection — subtle row highlight
+      graphicColor: "#ffd84d"   # rb_yellow — tree branches
+      showIcons:    false
+
+    # YAML view (describe / edit).
+    # Keys in oracle blue, values in plain text — keeps the structure scannable
+    # without fighting the brand trio for attention.
+    yaml:
+      keyColor:   "#a4bde8"   # oracle_blue_bright
+      colonColor: "#8590ae"   # fg_dim
+      valueColor: "#c8d0e8"   # text
+
+    # Logs (pod logs view).
+    logs:
+      fgColor: "#c8d0e8"
+      bgColor: "#0a1128"
+      indicator:
+        fgColor:        "#ffd84d"   # rb_yellow — "AUTO SCROLL ON" badge
+        bgColor:        "#0a1128"
+        toggleOnColor:  "#b8d49e"   # paddock_green
+        toggleOffColor: "#a8a8b0"   # cool_grey
+
+    # Help (?) overlay.
+    help:
+      fgColor:      "#c8d0e8"
+      bgColor:      "#0a1128"
+      keyColor:     "#ffd84d"   # rb_yellow — keystroke
+      numKeyColor:  "#ffd84d"
+      sectionColor: "#e84a55"   # kerb_red  — section labels
+      headingColor: "#a4bde8"   # oracle_blue_bright
+
+# =============================================================================
+# Quickstart
+# =============================================================================
+#
+#   # 1. Drop the skin in place
+#   mkdir -p ~/.config/k9s/skins
+#   curl -fsSL \
+#     https://raw.githubusercontent.com/Amdhj22/rbr/main/tools/k9s/skin.yaml \
+#     -o ~/.config/k9s/skins/rbr.yaml
+#   # macOS users without XDG_CONFIG_HOME:
+#   #   target ~/Library/Application\ Support/k9s/skins/rbr.yaml instead
+#
+#   # 2. Activate it
+#   #    Edit ~/.config/k9s/config.yaml (or the macOS Application Support copy):
+#   #      k9s:
+#   #        ui:
+#   #          skin: rbr
+#
+#   # 3. Restart k9s.  If colors don't change, check ~/Library/Logs/k9s/k9s.log
+#   #    for a YAML parse error — k9s falls back silently on invalid skins.
+#
+# =============================================================================
