@@ -1,6 +1,6 @@
 # =============================================================================
 # RBR — Red Bull Racing theme for Ghostty
-# Version: 2.1.0-classic
+# Version: 2.3.0-classic
 # =============================================================================
 #
 # Inspired by the Red Bull Racing Formula 1 livery:
@@ -54,3 +54,4 @@ cursor-text  = #0a1128
 # Muted navy-blue selection so selected text stays readable.
 selection-background = #1f2a52
 selection-foreground = #c8d0e8
+
