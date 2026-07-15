@@ -134,6 +134,22 @@ Everything below reads from [`palette.json`](./palette.json) as the single sourc
 
 ## 🔧 Installation
 
+### Quick apply (local clone)
+
+If you have this repo cloned, one script symlinks RBR into every supported tool
+at once — ghostty, p10k, eza, k9s. Because they're symlinks, updating this repo
+updates each tool immediately (no drift).
+
+```bash
+git clone git@github.com:Amdhj22/rbr.git ~/workspace/private/rbr-theme
+cd ~/workspace/private/rbr-theme
+./scripts/apply.sh          # symlink into ~/.config/*
+# ./scripts/apply.sh --copy # copy instead, if you don't want a clone dependency
+```
+
+The script prints manual steps for iTerm2 / tmux / nvim / VS Code (each shipped
+as its own plugin/extension). For a single tool, use the manual steps below.
+
 ### Ghostty
 
 ```bash
